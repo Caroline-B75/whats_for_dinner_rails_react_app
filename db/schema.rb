@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 2021_05_03_151057) do
   enable_extension "plpgsql"
 
   create_table "favorite_recipes", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
