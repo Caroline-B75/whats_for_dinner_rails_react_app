@@ -3,14 +3,14 @@ class Recipe < ApplicationRecord
   DIET = ["végétarien", "flexitarien", "carnivore"]
   PRICE = ["bon marché", "coût moyen", "assez cher"]
 
-  # has_many :preparations
-  # has_many :ingredients, through: :preparations
-  # has_many :reviews
-  # has_many :menu_recipes
-  # has_many :menus, through: :menu_recipes
-  # has_one_attached :photo
-  # has_many :favorite_recipes
-  # has_many :favorited_by, through: :favorite_recipes, source: :user
+  has_many :preparations
+  has_many :ingredients, through: :preparations
+  has_many :reviews
+  has_many :menu_recipes
+  has_many :menus, through: :menu_recipes
+  has_one_attached :photo
+  has_many :favorite_recipes
+  has_many :favorited_by, through: :favorite_recipes, source: :user
 
   validates :name, presence: true, uniqueness: true
   validates_inclusion_of :difficulty, in: DIFFICULTY, presence: true

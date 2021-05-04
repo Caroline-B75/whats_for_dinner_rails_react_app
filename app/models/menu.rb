@@ -1,7 +1,7 @@
 class Menu < ApplicationRecord
-  # has_many :menu_recipes
-  # has_many :recipes, through: :menu_recipes
-  # has_many :grocery_items
+  has_many :menu_recipes
+  has_many :recipes, through: :menu_recipes
+  has_many :grocery_items
   has_many :accesses
   belongs_to :user
 
