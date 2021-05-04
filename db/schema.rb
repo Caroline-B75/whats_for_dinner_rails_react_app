@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_03_163406) do
+ActiveRecord::Schema.define(version: 2021_05_04_135407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,12 +31,38 @@ ActiveRecord::Schema.define(version: 2021_05_03_163406) do
     t.index ["user_id"], name: "index_favorite_recipes_on_user_id"
   end
 
+  create_table "grocery_items", force: :cascade do |t|
+    t.float "quantity"
+    t.string "name"
+    t.string "category"
+    t.string "unit"
+    t.boolean "checked"
+    t.bigint "menu_recipe_id", null: false
+    t.bigint "menu_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_grocery_items_on_menu_id"
+    t.index ["menu_recipe_id"], name: "index_grocery_items_on_menu_recipe_id"
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
     t.string "unit"
     t.string "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "menu_recipes", force: :cascade do |t|
+    t.integer "number_of_people"
+    t.boolean "done"
+    t.boolean "favorite"
+    t.bigint "menu_id", null: false
+    t.bigint "recipe_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_menu_recipes_on_menu_id"
+    t.index ["recipe_id"], name: "index_menu_recipes_on_recipe_id"
   end
 
   create_table "menus", force: :cascade do |t|
@@ -100,6 +126,10 @@ ActiveRecord::Schema.define(version: 2021_05_03_163406) do
   add_foreign_key "accesses", "users"
   add_foreign_key "favorite_recipes", "recipes"
   add_foreign_key "favorite_recipes", "users"
+  add_foreign_key "grocery_items", "menu_recipes"
+  add_foreign_key "grocery_items", "menus"
+  add_foreign_key "menu_recipes", "menus"
+  add_foreign_key "menu_recipes", "recipes"
   add_foreign_key "menus", "users"
   add_foreign_key "preparations", "ingredients"
   add_foreign_key "preparations", "recipes"
