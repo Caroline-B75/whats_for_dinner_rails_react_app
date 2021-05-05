@@ -1,0 +1,28 @@
+<div>
+  <div>
+    <h1><%= @recipe.name %></h1>
+  </div>
+</div>
+
+<div>
+  <%= cl_image_tag @recipe.photo.key %>
+
+  <div>
+    <h3>Infos</h3>
+    <%= @recipe.price %>
+    <h3>Ingredients</h3>
+    <div>
+      <% @recipe.preparations.each do |preparation| %>
+        <div>
+          <p><%= Ingredient.find(preparation.ingredient_id).name %></p>
+          <p><%= preparation.quantity %> <%= Ingredient.find(preparation.ingredient_id).unit %></p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <h3>Recette</h3>
+    <p><%= simple_format(@recipe.content) %></p>
+  </div>
+</div>
