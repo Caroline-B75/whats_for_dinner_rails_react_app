@@ -1,5 +1,5 @@
 class Ingredient < ApplicationRecord
-  CATEGORY = ["Boulangerie", "Fromagerie", "Poissonnerie", "Traiteur", "Fruits et légumes", "Boucherie et charcuterie", "Produits frais libre-service", "Boissons", "Vins, Champagnes, alcools", "Epicerie Sucrée", "Epicerie salée", "Textile", "Bazar", "Droguerie", "Bio", "Autre", "Surgelé", "Hygiène et beautée", "Animalerie"].sort
+  CATEGORY = ["Bio", "Boissons", "Boucherie et charcuterie", "Boulangerie", "Épicerie salée", "Épicerie sucrée", "Fromagerie", "Fruits et légumes", "Hygiène et beauté", "Poissonnerie", "Produits frais libre-service", "Surgelé", "Traiteur", "Vins, Champagnes, alcools", "Autre"]
   UNIT = ["l","dl", "cl", "ml", "kg", "g", "mg", "botte(s)", "branche(s)", "cube(s)", "cuillère(s) à café", "cuillère(s) à soupe", "entier(s)", "feuille(s)", "gousse(s)", "goutte(s)", "paquet(s)", "pièce(s)" "pincée(s)", "rouleau(x)", "tranche(s)", "unité(s)"]
   has_many :preparations
   has_many :recipes, through: :preparations
