@@ -1,0 +1,6 @@
+<%= simple_form_for @ingredient do |f| %>
+  <%= f.input :name, label: 'Nom' %>
+  <%= f.input :unit, label: 'unité de quantité/poids', collection: Ingredient::UNIT, input_html: { class: 'select2' } %>
+  <%= f.input :category, label: 'catégorie', collection: Ingredient::CATEGORY, input_html: { class: 'select2' }  %>
+  <%= f.submit "Enregistrer", class: "btn btn-success"%>
+<% end %>

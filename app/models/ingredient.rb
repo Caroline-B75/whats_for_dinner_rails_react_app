@@ -6,6 +6,7 @@ class Ingredient < ApplicationRecord
 
   validates :name, presence: true
   validates :unit, presence: true
+  validates :category, presence: true
   validates_inclusion_of :category, in: CATEGORY, presence: true
   validates_inclusion_of :unit, in: UNIT, presence: true
 end
