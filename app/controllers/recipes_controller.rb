@@ -6,12 +6,9 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = Recipe.new(recipe_params)
-    if @recipe.save
-      redirect_to recipe_path(@recipe)
-    else
-      render :new
-    end
+    @recipe.save!
     authorize @recipe
+    redirect_to edit_recipe_path(@recipe)
   end
   
   def show
