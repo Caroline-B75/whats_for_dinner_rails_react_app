@@ -7,9 +7,15 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "open-uri"
 
+Access.destroy_all
+Review.destroy_all
 Preparation.destroy_all
 Ingredient.destroy_all
+GroceryItem.destroy_all
+MenuRecipe.destroy_all
 Recipe.destroy_all
+Menu.destroy_all
+User.destroy_all
 
 # RECETTES
 
@@ -19,7 +25,7 @@ recipe1 = Recipe.create!(name: "Bricks au thon", difficulty: "très facile", pri
 <br />4) Poivrer à votre convenance en n'hésitant pas à goûter la farce.
 <br />5) Mettre un peu de farce au centre de chaque feuille de brick puis replier les quatre côtés de la feuille sur le dessus pour former un rectangle.")
 
-file1 = URI.open("https://res.cloudinary.com/dlvetmyxn/image/upload/v1620223798/Whats_for_dinner_Rails_React/brick-au-thon.jpg")
+file1 = URI.open("https://res.cloudinary.com/dlvetmyxn/image/upload/v1620392977/brick-au-thon.jpg")
 recipe1.photo.attach(io: file1, filename: 'some-image.jpg', content_type: 'image/jpg')
 recipe1.save!
 
@@ -37,7 +43,7 @@ recipe2 = Recipe.create!(name: "Lasagnes à la bolognaise", difficulty: "moyen",
 <br />12) Sur la dernière couche de lasagnes, ne mettre que de la béchamel et recouvrir de fromage râpé. Parsemer quelques noisettes de beurre.
 <br />13) Enfourner pour environ 25 minutes de cuisson.")
 
-file2 = URI.open("https://res.cloudinary.com/dlvetmyxn/image/upload/v1620224414/Whats_for_dinner_Rails_React/lasagnes_bolognaise.jpg")
+file2 = URI.open("https://res.cloudinary.com/dlvetmyxn/image/upload/v1620393174/lasagnes_bolognaise.jpg")
 recipe2.photo.attach(io: file2, filename: 'some-image.jpg', content_type: 'image/jpg')
 recipe2.save!
 
@@ -51,7 +57,7 @@ recipe3 = Recipe.create!(name: "Risotto aux asperges fraîches", difficulty: "tr
 <br />8) A mi-cuisson on ajoute les pointes d'asperges. Goûter pour vérifier la cuisson du riz et poivrer, puis verser le parmesan rapé fin et noix de beurre et bien mélanger pour qu'il fondent.
 <br />9) Servir très chaud.")
 
-file3 = URI.open("https://res.cloudinary.com/dlvetmyxn/image/upload/v1620224718/Whats_for_dinner_Rails_React/risotto_asperges_fraiches.jpg")
+file3 = URI.open("https://res.cloudinary.com/dlvetmyxn/image/upload/v1620393176/risotto_asperges_fraiches.jpg")
 recipe3.photo.attach(io: file3, filename: 'some-image.jpg', content_type: 'image/jpg')
 recipe3.save!
 
