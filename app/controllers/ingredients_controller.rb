@@ -2,7 +2,7 @@ class IngredientsController < ApplicationController
   before_action :set_restaurant, only: [:edit, :update, :destroy]
 
   def index
-    @ingredients = policy_scope(Ingredient).order(name: :asc)
+    @ingredients = policy_scope(Ingredient).order('LOWER(name)')
     @ingredient = Ingredient.new
   end
 
