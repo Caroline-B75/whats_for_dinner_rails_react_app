@@ -4,21 +4,31 @@
     <br />
     <ul>
       <% @ingredients.each do |ingredient| %>
-        <li class="list-group-item"><%= ingredient.name.capitalize %> <em>(en <%= ingredient.unit %>)</em> ----> <%= ingredient.category %>  
-           - <%= link_to "Supprimer",
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-8">
+              <%= ingredient.name.capitalize %> <em>(en <%= ingredient.unit %>)</em> ----> <%= ingredient.category %>
+            </div>
+            <div class="col-2">
+            <%= link_to "Supprimer",
             ingredient_path(ingredient),
             method: :delete,
             class: "text-danger",
             data: { confirm: "Si l'ingrédient est déjà utilisé dans la préparation d'une recette, vous ne pouvez le supprimer. Continuer ?" } %>
-          - <%= link_to "Modifier",
+            </div>
+            <div class="col-2">
+            <%= link_to "Modifier",
             edit_ingredient_path(ingredient),
             method: :get %>
+            </div>
+          </div>
         </li>
       <% end %>
     </ul>
   </div>
 </div>
 
+<!-- Button trigger modal -->
       <div class="row d-flex justify-content-end" id="haut">
         <div class="col-md-3 d-flex justify-content-end">
           <button type="button" class="btn btn-dark fixed-bottom m-3" data-toggle="modal" data-target="#addItem">
@@ -27,6 +37,7 @@
         </div>
       </div>
 
+<!-- Modal -->
       <div id="addItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addItemTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
