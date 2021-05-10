@@ -1,5 +1,5 @@
 class IngredientsController < ApplicationController
-  before_action :set_restaurant, only: [:edit, :update, :destroy]
+  before_action :set_ingredient, only: [:edit, :update, :destroy]
 
   def index
     @ingredients = policy_scope(Ingredient).order('LOWER(name)')
@@ -40,7 +40,7 @@ class IngredientsController < ApplicationController
     params.require(:ingredient).permit(:name, :unit, :category)
   end
 
-  def set_restaurant
+  def set_ingredient
     @ingredient = Ingredient.find(params[:id])
   end
   
