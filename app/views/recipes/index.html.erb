@@ -10,7 +10,7 @@
               <%= recipe.id %>
             </div>
             <div class="col-7">
-              <%= recipe.name.capitalize %> <em>avec (en <%= recipe.preparations.length %>) préparation(s)</em>
+              <%= recipe.name.capitalize %> <em>(avec <%= recipe.preparations.length %> préparation(s))</em>
             </div>
             <div class="col-2">
             <%= link_to "Supprimer",
@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<!-- Button trigger modal -->
+<!-- Button trigger modal --> 
       <div class="row d-flex justify-content-end" id="haut">
         <div class="col-md-3 d-flex justify-content-end">
           <button type="button" class="btn btn-dark fixed-bottom m-3" data-toggle="modal" data-target="#addRecipe">

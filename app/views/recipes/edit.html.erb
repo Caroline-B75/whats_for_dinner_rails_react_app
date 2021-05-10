@@ -2,6 +2,7 @@
 <h2 class="text-center mt-5">Modifier la recette : <%= @recipe.name %></h2>
 <div class="row justify-content-center">
   <div class="col-sm-11 col-md-10 col-lg-6 mb-5">
+    <%= cl_image_tag @recipe.photo.key, height: 150, crop: :fill %>
     <%= render "form", recipe: @recipe %>
   </div>
 </div>
@@ -12,12 +13,10 @@
     <ul>
       <% @recipe.preparations.order(id: :asc).each do |preparation| %>
         <li>
-          <p><%= preparation.quantity %> <%= Ingredient.find(preparation.ingredient_id).unit %> <%= Ingredient.find(preparation.ingredient_id).name %></p>
+          <%= preparation.quantity %> <%= Ingredient.find(preparation.ingredient_id).unit %> <%= Ingredient.find(preparation.ingredient_id).name %> - 
           <%= link_to "Supprimer",
             recipe_preparation_path(preparation),
-            method: :delete,
-            class: "text-danger",
-            data: { confirm: "Supprimer cette préparation ?" } %>
+            method: :delete %>
         </li>
       <% end %>
     </ul>

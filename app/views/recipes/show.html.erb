@@ -9,7 +9,10 @@
 
   <div>
     <h3>Infos</h3>
+    <%= @recipe.difficulty %>
     <%= @recipe.price %>
+    <%= @recipe.diet %>
+    <%= @recipe.time %>
     <h3>Ingredients</h3>
     <div>
       <% @recipe.preparations.each do |preparation| %>

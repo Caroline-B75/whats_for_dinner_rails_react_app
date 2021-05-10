@@ -5,7 +5,6 @@
   <%= f.input :price, collection: Recipe::PRICE  %>
   <%= f.input :diet, collection: Recipe::DIET %>
   <%= f.input :time %>
-  <%= "Ajouter <br> 2) avant chaque nouvelle ligne" %>
   <%= f.input :content, as: :text %>
   <%= f.input :photo, as: :file %>
   <%= f.button :submit, "Enregistrer", class: "btn btn-success"%>
