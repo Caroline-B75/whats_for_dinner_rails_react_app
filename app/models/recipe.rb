@@ -3,7 +3,7 @@ class Recipe < ApplicationRecord
   DIET = ["végétarien", "flexitarien", "carnivore"]
   PRICE = ["bon marché", "coût moyen", "assez cher"]
 
-  has_many :preparations
+  has_many :preparations, dependent: :destroy
   has_many :ingredients, through: :preparations
   has_many :reviews
   has_many :menu_recipes

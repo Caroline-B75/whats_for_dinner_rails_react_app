@@ -13,6 +13,11 @@
       <% @recipe.preparations.order(id: :asc).each do |preparation| %>
         <li>
           <p><%= preparation.quantity %> <%= Ingredient.find(preparation.ingredient_id).unit %> <%= Ingredient.find(preparation.ingredient_id).name %></p>
+          <%= link_to "Supprimer",
+            recipe_preparation_path(preparation),
+            method: :delete,
+            class: "text-danger",
+            data: { confirm: "Supprimer cette préparation ?" } %>
         </li>
       <% end %>
     </ul>
