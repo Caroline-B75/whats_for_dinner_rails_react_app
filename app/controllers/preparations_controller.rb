@@ -12,4 +12,5 @@ class PreparationsController < ApplicationController
     @preparation.destroy!
     authorize @preparation
   end
+  
 end

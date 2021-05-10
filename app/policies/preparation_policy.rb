@@ -12,5 +12,4 @@ class PreparationPolicy < ApplicationPolicy
   def destroy?
     true
   end
-  
 end

@@ -43,4 +43,5 @@ class IngredientsController < ApplicationController
   def set_restaurant
     @ingredient = Ingredient.find(params[:id])
   end
+  
 end
