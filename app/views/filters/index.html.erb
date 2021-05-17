@@ -1,0 +1,58 @@
+<h2 class="text-center mt-5">Liste des filtres déjà enregistrés</h2>
+<div class="row justify-content-center">
+  <div class="col-sm-11 col-md-10 col-lg-6 mb-5">
+    <br />
+    <ul>
+      <% @filters.each do |filter| %>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-1">
+              <%= filter.id %>
+            </div>
+            <div class="col-7">
+              <%= filter.name.capitalize %>
+            </div>
+            <div class="col-2">
+            <%= link_to "Supprimer",
+            filter_path(filter),
+            method: :delete,
+            class: "text-danger",
+            data: { confirm: "Continuer ?" } %>
+            </div>
+            <div class="col-2">
+            <%= link_to "Modifier",
+            edit_filter_path(filter),
+            method: :get %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+      <div class="row d-flex justify-content-end" id="haut">
+        <div class="col-md-3 d-flex justify-content-end">
+          <button type="button" class="btn btn-dark fixed-bottom m-3" data-toggle="modal" data-target="#addItem">
+            Ajouter un filtre
+          </button>
+        </div>
+      </div>
+
+<!-- Modal -->
+      <div id="addItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addItemTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addItemTitle">Ajouter un filtre :</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%= render "form", filter: @filter %>
+            </div>
+          </div>
+        </div>
+      </div>

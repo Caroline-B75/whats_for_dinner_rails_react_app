@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_11_164622) do
+ActiveRecord::Schema.define(version: 2021_05_17_095427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,22 +53,9 @@ ActiveRecord::Schema.define(version: 2021_05_11_164622) do
   end
 
   create_table "filters", force: :cascade do |t|
-    t.boolean "entrée", default: false
-    t.boolean "plat", default: false
-    t.boolean "soupe", default: false
-    t.boolean "viande", default: false
-    t.boolean "poisson", default: false
-    t.boolean "dessert", default: false
-    t.boolean "printemps", default: false
-    t.boolean "été", default: false
-    t.boolean "automne", default: false
-    t.boolean "hiver", default: false
-    t.boolean "express", default: false
-    t.boolean "veggie", default: false
-    t.boolean "healthy", default: false
-    t.boolean "detox", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
   end
 
   create_table "filters_recipes", id: false, force: :cascade do |t|
