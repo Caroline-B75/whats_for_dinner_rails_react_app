@@ -7,20 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require "open-uri"
 
-Access.destroy_all
-Review.destroy_all
-Preparation.destroy_all
-Ingredient.destroy_all
-GroceryItem.destroy_all
-MenuRecipe.destroy_all
-Recipe.destroy_all
-Menu.destroy_all
-User.destroy_all
+# Access.destroy_all
+# Review.destroy_all
+# Preparation.destroy_all
+# Ingredient.destroy_all
+# GroceryItem.destroy_all
+# MenuRecipe.destroy_all
+# Recipe.destroy_all
+# Menu.destroy_all
+# User.destroy_all
 
-
-# FILTRES
-
-filtre1 = Filter.create!(name: "entrée")
 
 # # RECETTES
 
