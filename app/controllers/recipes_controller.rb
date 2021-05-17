@@ -7,7 +7,8 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @recipes = policy_scope(Recipe).order(id: :desc)
+    @search = Recipe.search(params[:q])
+    @recipes = policy_scope(@search.result(distinct: true)).order(id: :desc)
     @recipe = Recipe.new
   end
 
