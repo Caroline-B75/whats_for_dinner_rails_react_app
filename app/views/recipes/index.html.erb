@@ -3,21 +3,28 @@
     <div class="row g-5">
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="text-primary mt-4">Filtrer</h4>
-        <%= search_form_for @search do |f| %>
-          <%= f.label :name_cont, "Le nom de la recette contient " %>
-          <%= f.text_field :name_cont %><br />
-          <%= f.label "Vous pouvez aussi choisir une catégorie" %><br />
-            <div class="">
-          <%= f.collection_radio_buttons :filters_id_in_any, Filter.all, :id, :name do |b| %>
-              <%= b.radio_button %>
-              <%= b.label %>
-          <% end %>
+        <div class="card p-3">
+          <%= search_form_for @search do |f| %>
+
+            <h5><%= f.label :name_cont, "Nom de la recette" %></h5>
+            <%= f.search_field :name_cont %><br /><br />
+
+            <h5><%= f.label :ingredients_name_cont, "Ingrédient" %></h5>
+            <%= f.search_field :ingredients_name_cont %><br /><br />
+
+            <h5><%= f.label "Catégorie" %></h5>
+              <%= f.collection_radio_buttons :filters_id_in_any, Filter.all, :id, :name do |b| %>
+                  <%= b.radio_button %>
+                  <%= b.label %>
+              <% end %>
+            <br /><br />
+            <div>
+              <%= f.submit value: 'Filtrer', class: 'btn btn-primary' %>
+              <%= link_to "Effacer", request.path, class: "btn btn-default text-danger" %>
             </div>
-          <div>
-            <%= f.submit value: 'Filtrer', class: 'btn btn-primary' %>
-            <%= link_to "Annuler", request.path, class: "btn btn-default" %>
-          </div>
-        <% end %>
+
+          <% end %>
+        </div>
       </div>
 
       <div class="col-md-7 col-lg-8">
