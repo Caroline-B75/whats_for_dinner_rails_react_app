@@ -7,14 +7,14 @@ class MenuRecipesController < ApplicationController
       preparation.quantity = preparation.quantity * @menu_recipe.number_of_people
     end
     
-    # @review = Review.new
-    # @reviews = @menu_recipe.recipe.reviews
-    # if !@reviews.nil?
-    #   @average_review = @reviews.average(:rating)
-    # end
+    @review = Review.new
+    @reviews = @menu_recipe.recipe.reviews
+    if !@reviews.nil?
+      @average_review = @reviews.average(:rating)
+    end
 
-    # @user_favorite = current_user.favorites.include? Recipe.find(@menu_recipe.recipe_id)
-    # @user_review = @menu_recipe.recipe.reviews.find_by(user_id: current_user.id)
+    @user_favorite = current_user.favorites.include? Recipe.find(@menu_recipe.recipe_id)
+    @user_review = @menu_recipe.recipe.reviews.find_by(user_id: current_user.id)
   end
 
   def create

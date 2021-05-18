@@ -27,7 +27,7 @@ class MenusController < ApplicationController
 
   def show
     @menu = Menu.find(params[:id])
-    # @access = Access.new
+    @access = Access.new
     authorize @menu
   end
 
@@ -39,7 +39,7 @@ class MenusController < ApplicationController
 
   def destroy
     @menu = Menu.find(params[:id])
-    # @menu.grocery_items.destroy_all
+    @menu.grocery_items.destroy_all
     @menu.menu_recipes.destroy_all
     @menu.delete
     authorize @menu
