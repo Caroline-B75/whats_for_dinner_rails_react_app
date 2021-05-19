@@ -1,28 +1,27 @@
-class MenuRecipePolicy < ApplicationPolicy
+class MenuPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
       scope.all
     end
   end
 
+  def index?
+    true
+  end
+
   def create?
     true
   end
 
-  def switch?
-    true
+  def show?
+    record.users.include?(user)
   end
 
-  def update?
+  def edit?
     true
   end
 
   def destroy?
     true
   end
-
-  def show?
-    record.menu.users.include?(user)
-  end
-
 end
