@@ -9,11 +9,39 @@
   align-items: center;  
 }
 
+.menu-banner {
+  h1 {
+    font-size: 40px;
+    color: $red;
+    text-align: center;
+    text-shadow: 1px 1px 1px lightgray;
+  }
+}
+
+.double-arrow {
+  position: absolute;
+  bottom: 30px;
+  p {
+    font-size: 22px;
+    color: white;
+    padding-bottom: 30px;
+    text-shadow: 1px 1px 1px gray;
+  }
+}
+
 @media (min-width: 375px) {
   .banner-h1 {
     font-size: 80px;
     color: $red;
     text-align: center;
+    text-shadow: 1px 1px 1px lightgray;
+  }
+  .banner-h2 {
+    font-size: 28px;
+    font-family: $body-font;
+    // color: $red;
+    text-align: center;
+    text-shadow: 1px 1px 1px lightgray;
   }
 }
 
@@ -22,5 +50,13 @@
     font-size: 30px;
     color: $red;
     text-align: center;
+    text-shadow: 1px 1px 1px lightgray;
+  }
+  .banner-h2 {
+    font-size: 22px;
+    font-family: $body-font;
+    // color: $red;
+    text-align: center;
+    text-shadow: 1px 1px 1px lightgray;
   }
 }
