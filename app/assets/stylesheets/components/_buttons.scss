@@ -1,0 +1,39 @@
+.red-btn {
+  align-items: center;
+  background-color: $red;
+  border: none;
+  padding: 18px 30px;
+  box-shadow: $shadow;
+  color: white;
+  font-size: 24px;
+  font-family: $body-font;
+  border-radius: $border-radius;
+  transition: all .3s ease;
+  
+    &:hover {
+      text-decoration: none;
+      color: white;
+      background-color: #a1283e;
+    }
+}
+
+.yellow-btn {
+  align-items: center;
+  background-color: $yellow;
+  border: none;
+  padding: 16px 28px;
+  box-shadow: $shadow;
+  color: white;
+  font-size: 22px;
+  font-family: $body-font;
+  border-radius: $border-radius;
+  transition: all .3s ease;
+  
+    &:hover {
+      text-decoration: none;
+      color: white;
+      background-color: #db9c4e;
+    }
+}
+
+
