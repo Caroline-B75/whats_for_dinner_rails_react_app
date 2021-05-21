@@ -7,11 +7,8 @@
   background-repeat: no-repeat;
   display: flex;
   align-items: center;  
-}
-
-.menu-banner {
   h1 {
-    font-size: 40px;
+    font-size: 42px;
     color: $red;
     text-align: center;
     text-shadow: 1px 1px 1px lightgray;
@@ -29,24 +26,22 @@
   }
 }
 
-@media (min-width: 375px) {
-  .banner-h1 {
-    font-size: 80px;
-    color: $red;
-    text-align: center;
-    text-shadow: 1px 1px 1px lightgray;
-  }
-  .banner-h2 {
-    font-size: 28px;
-    font-family: $body-font;
-    // color: $red;
-    text-align: center;
-    text-shadow: 1px 1px 1px lightgray;
-  }
+.banner-h1 {
+  font-size: 80px;
+  color: $red;
+  text-align: center;
+  text-shadow: 1px 1px 1px lightgray;
+}
+.banner-h2 {
+  font-size: 28px;
+  font-family: $body-font;
+  // color: $red;
+  text-align: center;
+  text-shadow: 1px 1px 1px lightgray;
 }
 
-@media (max-width: 375px) {
-  .banner-h1 {
+@include media-breakpoint-down(md) {
+  .banner h1 {
     font-size: 30px;
     color: $red;
     text-align: center;

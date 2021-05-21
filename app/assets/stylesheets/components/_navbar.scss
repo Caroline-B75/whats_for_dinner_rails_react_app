@@ -35,6 +35,12 @@
   }
 }
 
+@include media-breakpoint-down(md) {
+  .navbar-lewagon .navbar-button {
+    margin: 50px;
+  }
+}
+
 .dropdown-item {
   font-size: 1rem;
 }

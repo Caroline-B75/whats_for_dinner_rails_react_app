@@ -36,4 +36,10 @@
     }
 }
 
+@include media-breakpoint-down(md) {
+  .red-btn {
+    font-size: 20px;
+  }
+}
+
 

@@ -11,6 +11,7 @@ h1 {
 h2 {
   color: $brown;
   font-size: 32px;
+  text-align: center;
 }
 
 h3 {
@@ -34,4 +35,14 @@ ul {
   border-radius: 50%;
   color: white;
   margin-right: 10px;
+}
+
+@include media-breakpoint-down(md) {
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 26px;
+  }
 }
