@@ -1,2 +1,52 @@
+<div class="banner menu-banner shadow-lg">
+  <div class="container align-middle  text-center">
+    <h1 class="justify-content-center mb-4">Dites-nous en plus</h1><br>
+    <%= simple_form_for @menu do |f| %>
+     <div class="row justify-content-center d-flex flex-column flex-md-row">
+        <div class="col-sm-5">
+          <div class="step-title-menu-new">
+              <div class="step-creation-menu">
+                <h3>1</h3>
+              </div>
+                <p class="label">Combien de repas souhaitez-vous préparer ?</p>
+            </div>
+          <%= f.input :number_of_meals,
+            collection: 1..30,
+            label: false %>
+        </div>
+        <div class="col-sm-5">
+          <div class="step-title-menu-new">
+              <div class="step-creation-menu">
+                <h3>2</h3>
+              </div>
+                <p class="label">Pour combien de personnes (en générale) ?</p>
+            </div>
+          <%= f.input :number_of_people,
+            collection: 0..100,
+            label: false %>
+        </div>
 
-        <h1>Dites-nous en plus</h1>
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+          <div class="col">
+            <div class="step-title-menu-new">
+              <div class="step-creation-menu">
+                <h3>3</h3>
+              </div>
+                <p class="label">Quel type de menu ?</p>
+            </div>
+            <%= f.input :diet,
+              collection: Recipe::DIET,
+              wrapper_tag: 'div',
+              label_method: lambda { |diet| render 'menus/diet_card', diet: diet },
+              as: :radio_buttons,
+              include_blank: false,
+              include_hidden: false,
+              label: true %>
+          </div>
+        </div>
+     </div>
+        <%= f.submit "Générer mon menu", class: "red-btn" %>
+    <% end %>
+    </div>
+  </div>
+</div>
