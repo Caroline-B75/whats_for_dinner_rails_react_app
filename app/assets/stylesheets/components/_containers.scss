@@ -1,0 +1,33 @@
+.content-container {
+  width: 80%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@include media-breakpoint-down(md) {
+  .content-container {
+    width: 95%;
+  }
+}
+
+.menu-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: $snow;
+  border: solid 0.5px $light-gray;
+  box-shadow: 5px 5px 5px #0000003b;
+  border-radius: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+@include media-breakpoint-down(md) {
+  .menu-container {
+    justify-content: space-around;
+  }
+}

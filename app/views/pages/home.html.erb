@@ -1,7 +1,7 @@
 <div class="banner shadow-lg">
   <div class="container align-middle">
-    <h1 class="justify-content-center">What's for dinner?</h1><br>
-    <h2 class="banner-h2 text-center"> Qu'allez-vous cuisiner ces prochains jours ?</h2>
+    <h1 class="home-h1 justify-content-center">What's for dinner?</h1><br>
+    <h2 class="home-h2 text-center"> Qu'allez-vous cuisiner ces prochains jours ?</h2>
     <div class="row justify-content-center">
       <%= link_to "Je crée un nouveau menu", new_menu_path, class:"red-btn m-5" %>
       <div class="row double-arrow justify-content-center">
@@ -20,19 +20,19 @@
   <h2 class="pt-5 pb-5">Simplifiez-vous la vie dans votre cuisine !</h2>
   <div class="justify-content-center text-center  d-flex flex-column justify-content-around flex-md-row">
     <div class="card-home">
-      <%= cl_image_tag("menu-icon-final.png", :width=>100, :alt=>"menu", :crop=>:fit, :class=>"icone-home") %>
+      <%= cl_image_tag("menu-icon-final.png", :width=>100, :alt=>"menu", :crop=>:fit, :class=>"icone-card-home") %>
       <h3 class="mt-4 mb-3">Menu</h3>
       <p>Obtenez en quelques clics votre menu <b>totalement personnalisable</b> avec des
       recettes variées et adaptées à vos besoins et vos envies.</p>
     </div>
     <div class="card-home">
-      <%= cl_image_tag("grocery-items-icon-final.png", :width=>100, :alt=>"courses", :crop=>:fit, :class=>"icone-home") %>
+      <%= cl_image_tag("grocery-items-icon-final.png", :width=>100, :alt=>"courses", :crop=>:fit, :class=>"icone-card-home") %>
       <h3 class="mt-4 mb-3">Liste de courses</h3>
       <p>Une <b>liste de courses</b> est automatiquement générée en fonction de votre
       menu. Vous pouvez <b>la modifier et la compléter</b> à votre guise.</p>
     </div>
     <div class="card-home">
-      <%= cl_image_tag("recipe-icon-final.png", :width=>100, :alt=>"recettes", :crop=>:fit, :class=>"icone-home") %>
+      <%= cl_image_tag("recipe-icon-final.png", :width=>100, :alt=>"recettes", :crop=>:fit, :class=>"icone-card-home") %>
       <h3 class="mt-4 mb-3">Recettes</h3>
       <p>Chaque jour, accédez aux recettes de votre menu et suivez le guide.
       Vous, votre famille, vos amis, vos convives se régaleront de vos petits

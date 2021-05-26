@@ -1,0 +1,36 @@
+<div class="menu-banner shadow-lg">
+  <div class="content-container">
+    <h1 class="h1 justify-content-center mb-4">Voici le menu proposé, vous pouvez le personnaliser.</h1>
+    
+    <div class="menu-container">
+
+      <% @menu.menu_recipes.order(:id).each do |menu_recipe| %>
+        <div class="card-menu-edit">
+          <div class="card-recipe">
+            <div class="img">
+              <%= cl_image_tag Recipe.find(menu_recipe.recipe_id).photo.key%>
+            </div>
+
+            <div class="card-recipe-title">
+              <a><%= Recipe.find(menu_recipe.recipe_id).name %></a>
+            </div>
+
+          </div>
+          <div class="footer-card-menu-edit">
+            <%= link_to '<i class="fas fa-sync"></i>'.html_safe, switch_menu_recipe_path(@menu, menu_recipe), method: :post, remote: true, title: "Changer de recette", data: { toggle: 'tooltip', placement: 'top' } %>
+            <p>|</p>
+            <%= link_to '<i class="fas fa-times"></i>'.html_safe, menu_menu_recipe_path(@menu, menu_recipe), method: :delete, remote: true, class: 'tooltips', title: "Supprimer ce repas", data: { toggle: 'tooltip', placement: 'top' } %>
+            <p>|</p>
+            <%= simple_form_for(menu_recipe) do |f| %>
+              <%= link_to '<i class="fas fa-user-friends"></i>'.html_safe, "#", class: 'tooltips', title: "Modifier le nombre de personnes", data: { toggle: 'tooltip', placement: 'top' }, remote: true %>
+              <%= f.select :number_of_people, (1..100), {}, { value: menu_recipe.number_of_people, onchange: 'this.form.submit();' } %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+        <%= link_to 'Ajouter un repas<br/><i class="fas fa-plus"></i>'.html_safe, menu_menu_recipes_path(@menu, recipe_id: "random"), method: :post, remote: true, class: "btn btn-primary"%>
+    </div>
+
+  </div>
+</div>
+
