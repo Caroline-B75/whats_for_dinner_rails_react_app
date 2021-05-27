@@ -2,11 +2,12 @@
   font-size: 20px;
   font-weight: 500;
   height: 50px;
-  width: 120px;
+  // width: auto;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
 }
+
 .label {
   font-size: 20px;
   font-weight: 500;
@@ -97,6 +98,29 @@ select#menu_recipe_number_of_people {
    outline: 0;
   }
 }
+
+//MENU NEW FORM
+
+#menu_number_of_meals  {
+  font-size: 20px;
+  font-weight: 500;
+  height: 50px;
+  width: 100px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#menu_number_of_people  {
+  font-size: 20px;
+  font-weight: 500;
+  height: 50px;
+  width: 100px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 
 // .form-inline .form-control {
 //   display: inline-block;

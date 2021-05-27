@@ -1,88 +1,90 @@
-<div class="container">
-  <main>
-    <div class="row g-5">
-      <div class="col-md-5 col-lg-4 order-md-last">
-        <h4 class="text-primary mt-4">Filtrer</h4>
-        <div class="card p-3">
-          <%= search_form_for @search do |f| %>
+<div class="menu-banner shadow-lg">
+  <div class="content-container">
+    <main>
+      <div class="row g-5">
+        <div class="col-md-5 col-lg-4">
+          <h3 class="mt-4">Filtrer</h3>
+          <div class="card p-3">
+            <%= search_form_for @search do |f| %>
 
-            <h5><%= f.label :name_cont, "Nom de la recette" %></h5>
-            <%= f.search_field :name_cont %><br /><br />
+              <h5><%= f.label :name_cont, "Nom de la recette" %></h5>
+              <%= f.search_field :name_cont %><br /><br />
 
-            <h5><%= f.label :ingredients_name_cont, "Ingrédient" %></h5>
-            <%= f.search_field :ingredients_name_cont %><br /><br />
+              <h5><%= f.label :ingredients_name_cont, "Ingrédient" %></h5>
+              <%= f.search_field :ingredients_name_cont %><br /><br />
 
-            <h5><%= f.label "Catégorie" %></h5>
-              <%= f.collection_radio_buttons :filters_id_in_any, Filter.all, :id, :name do |b| %>
-                  <%= b.radio_button %>
-                  <%= b.label %>
-              <% end %>
-            <br /><br />
+              <h5><%= f.label "Catégorie" %></h5>
+                <%= f.collection_radio_buttons :filters_id_in_any, Filter.all, :id, :name do |b| %>
+                    <%= b.radio_button %>
+                    <%= b.label %>
+                <% end %>
+              <br /><br />
 
-            <div>
-              <%= f.submit value: 'Filtrer', class: 'btn btn-primary' %>
-              <%= link_to "Effacer", request.path, class: "btn btn-default text-danger" %>
-            </div>
-
-          <% end %>
-        </div>
-      </div>
-
-      <div class="col-md-7 col-lg-8">
-        <ul>
-        <h4 class="mt-4 text-primary">Les recettes</h2>
-          <% @recipes.each do |recipe| %>
-            <li class="list-group-item">
-              <div class="row">
-                <div class="col-1">
-                  <%= recipe.id %>
-                </div>
-                <div class="col-7">
-                  <%= recipe.name.capitalize %> <em>(avec <%= recipe.preparations.length %> préparation(s))</em>
-                </div>
-                <div class="col-2">
-                <%= link_to "Supprimer",
-                recipe_path(recipe),
-                method: :delete,
-                class: "text-danger",
-                data: { confirm: "Il faut d'abord supprimer les préparations de la recette." } %>
-                </div>
-                <div class="col-2">
-                <%= link_to "Modifier",
-                edit_recipe_path(recipe),
-                method: :get %>
-                </div>
+              <div>
+                <%= f.submit value: 'Filtrer', class: 'btn btn-primary' %>
+                <%= link_to "Effacer", request.path, class: "btn btn-default text-danger" %>
               </div>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-    </div>
-  </main>
 
-<!-- Button trigger modal --> 
-      <div class="row d-flex justify-content-end" id="haut">
-        <div class="col-md-3 d-flex justify-content-end">
-          <button type="button" class="btn btn-dark fixed-bottom m-3" data-toggle="modal" data-target="#addRecipe">
-            Ajouter une recette
-          </button>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-md-7 col-lg-8">
+          <ul>
+          <h3 class="mt-4">Les recettes</h3>
+            <% @recipes.each do |recipe| %>
+              <li class="list-group-item">
+                <div class="row">
+                  <div class="col-1">
+                    <%= recipe.id %>
+                  </div>
+                  <div class="col-7">
+                    <%= recipe.name.capitalize %> <em>(avec <%= recipe.preparations.length %> préparation(s))</em>
+                  </div>
+                  <div class="col-2">
+                  <%= link_to "Supprimer",
+                  recipe_path(recipe),
+                  method: :delete,
+                  class: "text-danger",
+                  data: { confirm: "Il faut d'abord supprimer les préparations de la recette." } %>
+                  </div>
+                  <div class="col-2">
+                  <%= link_to "Modifier",
+                  edit_recipe_path(recipe),
+                  method: :get %>
+                  </div>
+                </div>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
+      </div>
+    </main>
 
-<!-- Modal -->
-      <div id="addRecipe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addRecipeTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="addRecipeTitle">Ajouter une recette :</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <%= render "form", recipe: @recipe %>
+  <!-- Button trigger modal --> 
+        <div class="row d-flex justify-content-end" id="haut">
+          <div class="col-md-3 d-flex justify-content-end">
+            <button type="button" class="btn btn-dark fixed-bottom m-3" data-toggle="modal" data-target="#addRecipe">
+              Ajouter une recette
+            </button>
+          </div>
+        </div>
+
+  <!-- Modal -->
+        <div id="addRecipe" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addRecipeTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addRecipeTitle">Ajouter une recette :</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <%= render "form", recipe: @recipe %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+</div>
