@@ -36,13 +36,42 @@
     }
 }
 
+.tooltips.favorite-btn {
+  font-size: 22px;
+  color: $red;
+}
+
+.btn-add-meal {
+  width: 200px;
+  height: 234px;
+  box-shadow: 4px 4px 5px #0000001f;
+  border: solid 0.5px lightgrey;
+  border-radius: 15px;
+  color: #424242;
+  line-height: 18px;
+  margin-bottom: 10px;
+  background: #a7a7a7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  margin: 10px 15px;
+  &:hover {
+    color: #424242;
+    text-decoration: none;
+    transition: background-color 0.4s;
+    background-color: white;
+  }
+}
+
 @include media-breakpoint-down(md) {
   .red-btn {
     font-size: 18px;
   }
-}
 
-.tooltips.favorite-btn {
-  font-size: 22px;
-  color: $red;
+  .btn-add-meal {
+    width: 160px;
+  }
 }
