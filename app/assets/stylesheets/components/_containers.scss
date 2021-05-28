@@ -31,3 +31,16 @@
     justify-content: space-around;
   }
 }
+
+.recipes-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+@include media-breakpoint-down(md) {
+  .recipes-container {
+    justify-content: space-around;
+  }
+}
