@@ -2,23 +2,23 @@
   <div class="content-container">
     <main>
       <div class="row g-5">
-        <div class="col-md-3 col-lg-2 mb-4">
-          <h3 class="mb-3">Filtrer les recettes</h3>
+        <div class="col-md-3 col-lg-2 mt-3 mb-4">
+          <%# <h3 class="mb-3">Filtrer les recettes</h3> %>
             <%= search_form_for @search do |f| %>
 
               <h5><%= f.label "Catégorie :" %></h5>
-                <%= f.collection_select :filters_id_in_any, Filter.all, :id, :name,{include_blank: true}, {class:"form-control-filters"} %>
+                <%= f.collection_select :filters_id_in_any, Filter.all, :id, :name,{include_blank: true}, {class:"form-control-filters", onchange: 'this.form.submit();' } %>
               <br />
 
               <h5><%= f.label :ingredients_name_cont, "Ingrédient :" %></h5>
-              <%= f.search_field :ingredients_name_cont, {class:"form-control-filters"} %><br />
+              <%= f.search_field :ingredients_name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br />
 
               <h5><%= f.label :name_cont, "Recette contenant le mot :" %></h5>
-              <%= f.search_field :name_cont, {class:"form-control-filters"} %><br /><br />
+              <%= f.search_field :name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br /><br />
 
               <div>
-                <%= f.submit value: 'Filtrer', class: 'red-btn mr-3' %>
-                <strong><%= link_to "Effacer", request.path, class: "text-dark" %></strong>
+                <%# <%= f.submit value: 'Filtrer', class: 'red-btn mr-3' %>
+                <strong><%= link_to "Effacer les filtres", request.path, class: "btn btn-secondary" %></strong>
               </div>
 
             <% end %>
@@ -28,6 +28,18 @@
           <div class="recipes-container">
             <% @recipes.each do |recipe| %>
               <div class="card-menu-edit">
+                <div class="text-right">
+                  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe,
+                    recipe_path(recipe),
+                    method: :delete,
+                    class: "text-danger",
+                    data: { confirm: "Il faut d'abord supprimer les préparations de la recette." } %>
+
+                  <%= link_to '<i class="fas fa-pen" style="color: gray;"></i>'.html_safe,
+                    edit_recipe_path(recipe),
+                    method: :get %>
+                </div>
+
                 <div class="card-recipe">
 
                  <div class="img">
@@ -37,21 +49,20 @@
                   <div class="card-recipe-title">
                     <a><%= recipe.name.capitalize %></a>
                   </div>
-
+                  <div class="card-recipe-options">
                     <% if current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id) %>
-                      <p>inclus</p>
+                    <% recipe_in_menu = current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id)  %>
+                      <%= link_to '-'.html_safe, 
+                        menu_menu_recipe_path(@menu_recipe, id: recipe_in_menu.id, menu_id: current_user.menus.last.id),
+                        class: "btn-remove-recipe",
+                        method: :delete %>
+                    <% else %>
+                      <%= link_to '+'.html_safe, 
+                        menu_menu_recipes_path(@menu, menu_id: current_user.menus.last.id, recipe_id: recipe.id),
+                        class: "btn-add-recipe",
+                        method: :post %>
                     <% end %>
 
-                  <div class="footer-card-menu-edit p-2">
-                    <%= link_to "Supprimer",
-                      recipe_path(recipe),
-                      method: :delete,
-                      class: "text-danger",
-                      data: { confirm: "Il faut d'abord supprimer les préparations de la recette." } %>
-
-                    <%= link_to "Modifier",
-                      edit_recipe_path(recipe),
-                      method: :get %>
                   </div>
                 </div>
               </div>

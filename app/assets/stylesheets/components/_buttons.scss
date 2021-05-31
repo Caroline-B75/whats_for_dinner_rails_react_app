@@ -24,7 +24,7 @@
   padding: 13px 28px;
   box-shadow: $shadow;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   font-family: $body-font;
   border-radius: $border-radius;
   transition: all .3s ease;
@@ -43,12 +43,11 @@
 
 .btn-add-meal {
   width: 200px;
-  height: 234px;
+  height: 112px;
   box-shadow: 4px 4px 5px #0000001f;
   border: solid 0.5px lightgrey;
   border-radius: 15px;
   color: #424242;
-  line-height: 18px;
   margin-bottom: 10px;
   background: #a7a7a7;
   display: flex;
@@ -66,6 +65,73 @@
   }
 }
 
+  .btn-add-recipe {
+    align-items: center;
+    background-color: $red;
+    border: none;
+    border-radius: 50%;
+    box-shadow: $shadow;
+    color: white;
+    text-decoration: none;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+    font-family: $body-font;
+    font-weight: 800;
+    transition: all .3s ease;
+    margin: 5px;
+      &:hover:after {
+        content:" ajouter au menu";
+        color: white;
+        text-decoration: none;
+        font-weight: 400;
+      }
+      &:hover {
+        width: 100%;
+        font-size: 18px;
+        border-radius: $border-radius;
+        text-decoration: none;
+        color: white;
+        height: 35px;
+        vertical-align: middle;
+        padding-top: 3px;
+      }
+    }
+
+.btn-remove-recipe {
+  align-items: center;
+  background-color: $yellow;
+  border: none;
+  border-radius: 50%;
+  box-shadow: $shadow;
+  color: white;
+  text-decoration: none;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  font-family: $body-font;
+  font-weight: 800;
+  transition: all .3s ease;
+  margin: 5px;
+
+  &:hover:span {display:none}
+    &:hover:after {
+      content:" retirer du menu";
+      color: white;
+      text-decoration: none;
+      font-weight: 400;
+    }
+    &:hover {
+      width: 100%;
+      font-size: 18px;
+      border-radius: $border-radius;
+      text-decoration: none;
+      color: white;
+      height: 35px;
+      padding-top: 3px;
+    }
+  }
+
 @include media-breakpoint-down(md) {
   .red-btn {
     font-size: 18px;
@@ -73,5 +139,11 @@
 
   .btn-add-meal {
     width: 160px;
+  }
+
+  .btn-add-recipe {
+    &:hover {
+      font-size: 15px;
+    }
   }
 }
