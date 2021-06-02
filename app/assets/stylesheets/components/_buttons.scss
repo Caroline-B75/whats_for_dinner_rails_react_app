@@ -67,7 +67,7 @@
 
   .btn-add-recipe {
     align-items: center;
-    background-color: $red;
+    background-color: $yellow;
     border: none;
     border-radius: 50%;
     box-shadow: $shadow;
@@ -100,7 +100,7 @@
 
 .btn-remove-recipe {
   align-items: center;
-  background-color: $yellow;
+  background-color: $red;
   border: none;
   border-radius: 50%;
   box-shadow: $shadow;
@@ -142,6 +142,12 @@
   }
 
   .btn-add-recipe {
+    &:hover {
+      font-size: 15px;
+    }
+  }
+
+  .btn-remove-recipe {
     &:hover {
       font-size: 15px;
     }

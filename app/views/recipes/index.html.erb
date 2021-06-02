@@ -1,6 +1,24 @@
 <div class="menu-banner shadow-lg">
   <div class="content-container">
     <main>
+      <div class="row g-5 mb-4">
+        <div class="col-auto">
+          <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
+            edit_menu_path(@menu, id: current_user.menus.last.id),
+            method: :get %>
+        </div>
+        <div class="col">
+          <h5>Retourner à mon menu</h5>  
+        </div>
+        <div class="col text-right">
+          <h5>Voir ma liste des courses</h5>
+        </div>
+        <div class="col-auto text-right">
+          <%= link_to '<i class="fas fa-arrow-alt-circle-right fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
+            edit_menu_path(@menu, id: current_user.menus.last.id),
+            method: :get %>
+        </div>
+      </div>
       <div class="row g-5">
         <div class="col-md-3 col-lg-2 mt-3 mb-4">
           <%# <h3 class="mb-3">Filtrer les recettes</h3> %>
@@ -29,7 +47,7 @@
             <% @recipes.each do |recipe| %>
               <div class="card-menu-edit">
                 <div class="text-right">
-                  <%= link_to '<i class="fas fa-trash-alt"></i>'.html_safe,
+                  <%= link_to '<i class="fas fa-trash-alt" style="color: gray;"></i>'.html_safe,
                     recipe_path(recipe),
                     method: :delete,
                     class: "text-danger",
@@ -49,21 +67,23 @@
                   <div class="card-recipe-title">
                     <a><%= recipe.name.capitalize %></a>
                   </div>
-                  <div class="card-recipe-options">
                     <% if current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id) %>
+                  <div class="card-recipe-options" id="card-recipe-option-remove">
                     <% recipe_in_menu = current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id)  %>
-                      <%= link_to '-'.html_safe, 
+                      <%= link_to 'x'.html_safe, 
                         menu_menu_recipe_path(@menu_recipe, id: recipe_in_menu.id, menu_id: current_user.menus.last.id),
                         class: "btn-remove-recipe",
                         method: :delete %>
+                  </div>
                     <% else %>
+                    <div class="card-recipe-options">
                       <%= link_to '+'.html_safe, 
                         menu_menu_recipes_path(@menu, menu_id: current_user.menus.last.id, recipe_id: recipe.id),
                         class: "btn-add-recipe",
                         method: :post %>
+                  </div>
                     <% end %>
 
-                  </div>
                 </div>
               </div>
             <% end %>
