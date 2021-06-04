@@ -16,9 +16,7 @@
   }
 
   .navbar-button {
-    align-items: center;
-    width: fit-content;
-    justify-content: center;
+    flex-direction: row;
     padding: 10px 16px;
     border-radius: 40px;
     font-family: $body-font;
@@ -36,8 +34,8 @@
 }
 
 @include media-breakpoint-down(md) {
-  .navbar-lewagon .navbar-button {
-    margin: 50px;
+.navbar-button {
+    visibility: hidden;
   }
 }
 
