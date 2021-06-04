@@ -26,6 +26,7 @@ require("channels")
 import "bootstrap";
 import {allowPopovers} from "../plugins/popovers.js"
 import {allowTooltips} from "../plugins/tooltips.js"
+import {basculeForm} from "../plugins/display_item_quantity_update_form.js";
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -35,4 +36,9 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   allowPopovers();
   allowTooltips();
+  basculeForm();
+});
+
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
 });
