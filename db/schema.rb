@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_17_095427) do
+ActiveRecord::Schema.define(version: 2021_06_04_173545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_095427) do
     t.string "category"
     t.string "unit"
     t.boolean "checked"
-    t.bigint "menu_recipe_id", null: false
+    t.bigint "menu_recipe_id"
     t.bigint "menu_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -161,7 +161,7 @@ ActiveRecord::Schema.define(version: 2021_05_17_095427) do
   add_foreign_key "favorite_recipes", "users"
   add_foreign_key "filters_recipes", "filters"
   add_foreign_key "filters_recipes", "recipes"
-  add_foreign_key "grocery_items", "menu_recipes"
+  add_foreign_key "grocery_items", "menu_recipes", on_delete: :cascade
   add_foreign_key "grocery_items", "menus"
   add_foreign_key "menu_recipes", "menus"
   add_foreign_key "menu_recipes", "recipes"

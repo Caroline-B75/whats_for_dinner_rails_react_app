@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :menus, only: [ :index, :show, :new, :create, :edit, :destroy ] do
-    resources :menu_recipes, only: [ :create, :destroy]
+    resources :menu_recipes, only: [ :create, :destroy ]
     resources :grocery_items, only: [ :index, :create ]
     resources :accesses, only: [:create]
   end
 
   resources :recipes do
-    resources :preparations, only: [ :create, :destroy]
+    resources :preparations, only: [ :create, :destroy ]
   end
 
   resources :menu_recipes, only: [ :show, :update, :destroy ] do
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
 
   post '/menus/:id/create_grocery', to: "grocery_items#create_grocery", as: :menu_create_grocery_list
 
-  resources :shared_menus, only: [:index]
+  resources :shared_menus, only: [:index ]
 
   resources :grocery_items, only: [ :update ]
 end
