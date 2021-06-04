@@ -36,6 +36,16 @@ h3 {
   font-size: 26px;
 }
 
+p {
+  font-size: 18px;
+}
+
+#validation_menu {
+  font-size: 22px;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 1px lightgray;
+}
+
 ul {
   list-style: none;
 }
@@ -76,4 +86,11 @@ ul {
     text-align: center;
     text-shadow: 1px 1px 1px lightgray;
   }
+}
+
+.number-people {
+  color: $red;
+  font-size: 18px;
+  text-shadow: 1px 1px 1px lightgray;
+  font-weight: 600;
 }

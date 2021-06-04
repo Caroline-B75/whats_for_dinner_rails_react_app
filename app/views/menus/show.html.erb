@@ -1,0 +1,75 @@
+<div class="menu-banner shadow-lg">
+  <div class="content-container">
+
+    <div class="row g-5 mb-4">
+      <div class="col-auto">
+        <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
+          edit_menu_path(@menu, id: current_user.menus.last.id),
+          method: :get %>
+      </div>
+      <div class="col">
+        <h4>Modifier mon menu</h4>  
+      </div>
+      <div class="col text-right">
+        <h4>Voir ma liste des courses</h4>
+      </div>
+      <div class="col-auto text-right">
+        <%= link_to '<i class="fas fa-arrow-alt-circle-right fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
+          menu_grocery_items_path(current_user.menus.last),
+          method: :get %>
+      </div>
+    </div>
+
+    <h1 class="h1 justify-content-center mb-5">Voici votre menu pour <%= @menu.menu_recipes.count %> repas. Bon appétit !</h1>
+    <div class="menu-container">
+      <div class="recipes-container justify-content-center">
+        <% @menu.menu_recipes.order(:id).each do |menu_recipe| %>
+          <div class="card-menu-edit">
+
+            <% if menu_recipe.done == true %>
+              <div class="card-recipe-done">
+            <% else %>
+              <div class="card-recipe">
+            <% end %>
+                <div class="img">
+                  <%= cl_image_tag Recipe.find(menu_recipe.recipe_id).photo.key %>
+                </div>
+                <div class="card-recipe-title">
+                  <%= link_to Recipe.find(menu_recipe.recipe_id).name,  menu_recipe_path(menu_recipe), class: "menu-recipe-button" %>
+                </div>
+                <div class="footer-card-menu-edit">
+                  <div class="text-center number-people m-1">
+                    <%= menu_recipe.number_of_people %>
+                    &nbsp;
+                    <i class="fas fa-user-friends"></i>
+                    <% if menu_recipe.done == true %>
+                      &nbsp;&nbsp;&nbsp;
+                      <i class="fas fa-check"></i>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        <% end %>
+
+      </div>
+
+      <div class="text-center mb-5">
+        <%= link_to 'Ma liste de course',  menu_grocery_items_path(@menu), class: "red-btn" %>
+      </div>
+    </div>
+
+      <div class="text-center mb-5">
+            <p id="validation_menu">Partager mon menu et ma liste de course avec un autre utilisateur :</p>
+            <%= simple_form_for [ @menu, @access ], remote: true do |f| %>
+              <%= f.input :email, label: false, placeholder: "utilisateur@email.com" %>
+              <p class="pipe-input mb-2">|</p>
+              <%= button_tag type: 'submit'  do %>
+                <i class="far fa-paper-plane"  title="Partager" data-toggle="tooltip" data-placement="top" aria-hidden="true" aria-hissen=true></i>
+              <% end %>
+            <% end %>
+      </div>
+
+  </div>
+</div>
