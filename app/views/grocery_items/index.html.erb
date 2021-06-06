@@ -10,14 +10,6 @@
       <div class="col">
         <h4>Modifier mon menu</h4>  
       </div>
-      <div class="col text-right">
-        <h4>Voir ma liste des courses</h4>
-      </div>
-      <div class="col-auto text-right">
-        <%= link_to '<i class="fas fa-arrow-alt-circle-right fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
-          menu_grocery_items_path(current_user.menus.last),
-          method: :get %>
-      </div>
     </div>
 
 
@@ -29,7 +21,7 @@
 
           <div class="row d-flex justify-content-end" id="haut">
             <div class="col-md-3 d-flex justify-content-end">
-              <button type="button" class="btn grocery_yellow_button" data-toggle="modal" data-target="#addItem">
+              <button type="button" class="red-btn" data-toggle="modal" data-target="#addItem">
                 Ajouter une course
               </button>
             </div>
