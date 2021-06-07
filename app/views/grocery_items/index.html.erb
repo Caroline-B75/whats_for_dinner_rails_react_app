@@ -75,7 +75,7 @@
                                 <div class="col-10">
                                   <%= simple_form_for grocery_item do |f| %>
                                     <%= f.check_box :checked, class: "check-done mr-1", onchange: "this.form.submit()"%>
-                                    <%= f.label :quantity, "#{grocery_item.name} - #{grocery_item.quantity} #{grocery_item.unit}", { class: "#{grocery_item.checked ? 'item-bought' : 'item-to-buy'}" } %>
+                                    <%= f.label :quantity, "#{grocery_item.name} - #{number_with_precision(grocery_item.quantity, :delimiter => " ", :separator => ",", strip_insignificant_zeros: true)} #{grocery_item.unit}", { class: "#{grocery_item.checked ? 'item-bought' : 'item-to-buy'}" } %>
                                   <% end %>
                                 </div>
                                 <div class='pencil' id='<%= "#{grocery_item.id}" %>'>
