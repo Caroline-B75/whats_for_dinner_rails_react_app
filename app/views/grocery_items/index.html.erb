@@ -13,7 +13,12 @@
     </div>
 
 
+
+
+
       <div class="grocery-container mx-auto">
+
+
           <div class="step-title mb-3">
             <h1 class="grocery-list-title">Ma liste de courses</h1>
           </div>
@@ -44,7 +49,7 @@
                     <%= f.input :category, collection: Ingredient::CATEGORY, prompt: "au rayon", label: false %>
                     <%= f.input :menu_recipe_id, as: :hidden %>
                     <%= f.input :checked, as: :hidden %>
-                    <%= f.button :submit, "Ajouter à ma liste", class: "btn grocery_yellow_button"%>
+                    <%= f.button :submit, "Ajouter à ma liste", class: "yellow-btn mb-3"%>
                   <% end %>
                 </div>
               </div>
@@ -89,7 +94,7 @@
                                     </div>
                                     </div>
                                     <div class="row">
-                                    <%= f.button :submit, "Enregistrer", class: "btn grocery_yellow_button_update"%>
+                                    <%= f.button :submit, "Enregistrer", class: "yellow-btn ml-3 mb-3"%>
                                     </div>
                                   <% end %>
                                 </div>
@@ -104,11 +109,13 @@
                 <% end %>
               </div>
               <div class="col-md-3 offset-md-9 text-right">
-                <a href="#haut"><i class="fas fa-angle-double-up"></i></a>
+                <a href="#haut"><i class="fas fa-angle-double-up" style="color: black;"></i></a>
               </div>
             </div>
           </div>
         </div>
+
+
     </div>
   </div>
 </div>
