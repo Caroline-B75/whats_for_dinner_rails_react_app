@@ -54,10 +54,14 @@
         <% end %>
 
       </div>
+      <% if @menu.grocery_items.length == 0 %>
+        <%= link_to 'Valider mon menu',  menu_create_grocery_list_path(@menu), method: :post, class: "red-btn" %>
+      <% else %>
+        <div class="text-center mb-5">
+          <%= link_to 'Ma liste de course',  menu_grocery_items_path(@menu), class: "red-btn" %>
+        </div>
+      <% end %>
 
-      <div class="text-center mb-5">
-        <%= link_to 'Ma liste de course',  menu_grocery_items_path(@menu), class: "red-btn" %>
-      </div>
     </div>
 
       <div class="text-center mb-5">
