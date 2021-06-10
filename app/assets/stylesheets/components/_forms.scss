@@ -200,3 +200,12 @@ input#access_email {
   color: #747b83;
   font-weight: 300;
 }
+
+// NEW RECIPE FORM
+
+.new-recipe-filters-container {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  margin-bottom: 50px;
+}

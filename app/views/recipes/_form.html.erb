@@ -6,12 +6,14 @@
   <%= f.input :diet, collection: Recipe::DIET %>
   <%= f.input :time %>
   <%= f.label "Filtres" %><br />
-  <%= f.collection_check_boxes :filter_ids, Filter.all, :id, :name do |b| %>
-    <div class="collection-check-box">
-      <%= b.check_box %>
-      <%= b.label %>
-    </div>
-  <% end %>
+  <div class="new-recipe-filters-container">
+    <%= f.collection_check_boxes :filter_ids, Filter.all, :id, :name do |b| %>
+      <div class="col">
+        <%= b.check_box %>
+        <%= b.label %>
+      </div>
+    <% end %>
+  </div>
   <%= f.input :content, as: :text %>
   <%= f.input :photo, as: :file %>
   <%= f.button :submit, "Enregistrer", class: "btn btn-success"%>
