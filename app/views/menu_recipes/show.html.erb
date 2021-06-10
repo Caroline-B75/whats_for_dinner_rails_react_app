@@ -1,0 +1,29 @@
+<div class="menu-banner shadow-lg">
+  <div class="content-container">
+    
+
+    <div class="menu-recipe-container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-5">
+          <%= cl_image_tag @menu_recipe.recipe.photo.key, class: "recipe-image" %>
+            <div class="recipe-ingredients">
+              <h3 class="mt-3 mb-3">Ingredients - pour <%= @menu_recipe.number_of_people %> personnes</h3>
+
+              <% @menu_recipe.recipe.preparations.each do |preparation| %>
+                <p id="ingredients-list">- <%= Ingredient.find(preparation.ingredient_id).name %> - <%=  number_with_precision(preparation.quantity, :delimiter => " ", :separator => ",", strip_insignificant_zeros: true) %> <%= Ingredient.find(preparation.ingredient_id).unit %></p>
+              
+              <% end %>
+
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-7">
+          <h1 class="mb-3 text-left"><%= @menu_recipe.recipe.name %></h1>
+          <h4><%= @menu_recipe.recipe.time %> - <%= @menu_recipe.recipe.difficulty %> - <%= @menu_recipe.recipe.diet %> - <%= @menu_recipe.recipe.price %></h4>
+          <p><%= simple_format(@menu_recipe.recipe.content) %></p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
