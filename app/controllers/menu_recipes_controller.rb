@@ -38,7 +38,11 @@ class MenuRecipesController < ApplicationController
     @menu_recipe.update(menu_recipe_params)
 
     authorize @menu_recipe
-    redirect_to edit_menu_path(@menu) if params[:recipe] == "new"
+    if params[:recipe] == "new"
+      redirect_to edit_menu_path(@menu) 
+    else
+      redirect_to "#{url_for(@menu_recipe)}#ingredients"
+    end
   end
 
   def switch
