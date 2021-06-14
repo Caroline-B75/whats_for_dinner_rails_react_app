@@ -35,6 +35,12 @@
 .ingredients-list {
   list-style: outside;
   line-height: 2em;
+  // background-color: #eaa85840;
+  border-left: 3px solid #eaa85840;
+  border-right: 3px solid #eaa85840;
+  border-radius: 15px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .number-of-people-selection {

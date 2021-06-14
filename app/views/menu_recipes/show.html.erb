@@ -9,7 +9,7 @@
       <div class="row">
 
         <div class="col-sm-12 col-md-12 col-lg-4">
-          <h3 class="mt-4 mb-3" id="ingredients">Ingredients - pour <%= @menu_recipe.number_of_people %> personnes</h3>
+          <h3 class="mt-4 mb-3" id="ingredients">Ingredients</h3>
           <div class="number-of-people-selection">
             <%= simple_form_for (@menu_recipe) do |f| %>
               <i class="fas fa-user-friends"></i><%= f.select :number_of_people, (1..100), {}, { value: @menu_recipe.number_of_people, onchange: 'this.form.submit()' } %>
