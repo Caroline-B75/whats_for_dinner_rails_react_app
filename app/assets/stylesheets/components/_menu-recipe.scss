@@ -21,7 +21,7 @@
   width: 100%;
   margin: auto;
   border-radius: 15px;
-  height: 500px;
+  height: 450px;
   -o-object-fit: cover;
   object-fit: cover;
 }
@@ -32,10 +32,13 @@
   }
 }
 
+.favorite {
+  margin-left: auto;
+}
+
 .ingredients-list {
   list-style: outside;
   line-height: 2em;
-  // background-color: #eaa85840;
   border-left: 3px solid #eaa85840;
   border-right: 3px solid #eaa85840;
   border-radius: 15px;

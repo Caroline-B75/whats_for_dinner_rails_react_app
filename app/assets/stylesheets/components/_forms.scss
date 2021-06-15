@@ -209,3 +209,14 @@ input#access_email {
   width: 100%;
   margin-bottom: 50px;
 }
+
+.label-checkbox {
+  font-family: Lobster;
+  font-size: 22px;
+  margin: 8px;
+}
+
+.check-done {
+  transform: scale(1.5);
+  filter: hue-rotate(308deg);
+}
