@@ -35,12 +35,17 @@
     object-fit: cover;
   }
 }
+#card-recipe-done {
+  background-color: #58585866;
+  filter: grayscale(1);
+}
 
 @include media-breakpoint-down(md) {
   .card-recipe {
     width: 180px;
   }
 }
+
 
 .card-menu-edit {
   margin: 10px 10px;
@@ -64,9 +69,9 @@
     font-weight: 600;
   }
   a:hover {
-      color: $yellow;
-      text-decoration: none;
-      transition: color 0.4s;
+    color: $yellow;
+    text-decoration: none;
+    transition: color 0.4s;
     &:focus {
       outline: 0;
       color: black;
@@ -138,6 +143,3 @@
   font-size: 16px;
 }
 
-.card-recipe-done {
-  background-color: #58585866;
-}
