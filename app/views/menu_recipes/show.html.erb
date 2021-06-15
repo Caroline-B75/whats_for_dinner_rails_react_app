@@ -3,12 +3,11 @@
     
 
     <div class="menu-recipe-container">
-      <div class="row">
-        <%= cl_image_tag @menu_recipe.recipe.photo.key, class: "recipe-image" %>
-      </div>
+
       <div class="row">
 
         <div class="col-sm-12 col-md-12 col-lg-4">
+        <%= cl_image_tag @menu_recipe.recipe.photo.key, class: "recipe-image" %>
           <h3 class="mt-4 mb-3" id="ingredients">Ingredients</h3>
           <div class="number-of-people-selection">
             <%= simple_form_for (@menu_recipe) do |f| %>
@@ -60,7 +59,7 @@
             <%= f.label "Fait", {class: "checkbox inline label-checkbox"} %>
           <% end %>
 
-          <div id="review-form" class="<%= 'd-none' unless @menu_recipe.done? %>">
+          <div class="<%= 'd-none' unless @menu_recipe.done? %>">
             <% if @user_review.nil? %>
             <%= render "reviews/new", menu_recipe: @menu_recipe, review: @review %>
             <% end %>
@@ -69,48 +68,48 @@
         </div>
       </div>
 
-
     </div>
+
+      <% if !@average_review.nil? %>
+        <div class="reviews-display">
+          <div class="review-average">
+            <div class="review-features">
+              <p>Note globale: <%= @average_review.round %> / 5</p>
+              <p>
+                <% @average_review.round.times do %>
+                  <i class="fas fa-star" style="color: #EAA858"></i>
+                <% end %>
+                <% (5 - @average_review.round).times do %>
+                  <i class="far fa-star" style="color: #EAA858"></i>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="reviews-display">
+        <% @menu_recipe.recipe.reviews.order(id: :desc).each do | review | %>
+          <div class="review">
+            <div class="review-features">
+              <p><%= review.user.username %> - <%= (review.created_at).to_s.match(/\d{4}-\d{2}-\d{2}/) %></p>
+              <p>
+                <% review.rating.times do %>
+                  <i class="fas fa-star" style="color: gray"></i>
+                <% end %>
+                <% (5 - review.rating).times do %>
+                  <i class="far fa-star" style="color: gray"></i>
+                <% end %>
+              </p>
+            </div>
+            <%# <div class="review-content"> %>
+              <p><%= review.content %></p>
+            <%# </div> %>
+          </div>
+        <% end %>
+      </div>
 
 
   </div>
 </div>
 
-<% if !@average_review.nil? %>
-  <div class="reviews-display">
-    <div class="review-average">
-      <div class="review-features">
-        <p>Note globale: <%= @average_review.round %> / 5</p>
-        <p>
-          <% @average_review.round.times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-          <% (5 - @average_review.round).times do %>
-            <i class="far fa-star"></i>
-          <% end %>
-        </p>
-      </div>
-    </div>
-  </div>
-<% end %>
-
-<div class="reviews-display">
-  <% @menu_recipe.recipe.reviews.order(id: :desc).each do | review | %>
-    <div class="review">
-      <div class="review-features">
-        <p><%= review.user.username %> - <%= (review.created_at).to_s.match(/\d{4}-\d{2}-\d{2}/) %></p>
-        <p>
-          <% review.rating.times do %>
-            <i class="fas fa-star"></i>
-          <% end %>
-          <% (5 - review.rating).times do %>
-            <i class="far fa-star"></i>
-          <% end %>
-        </p>
-      </div>
-      <div class="review-content">
-        <p><%= review.content %></p>
-      </div>
-    </div>
-  <% end %>
-</div>
