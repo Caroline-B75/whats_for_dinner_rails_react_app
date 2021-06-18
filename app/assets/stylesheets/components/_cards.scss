@@ -69,7 +69,6 @@
     font-weight: 600;
   }
   a:hover {
-    color: $yellow;
     text-decoration: none;
     transition: color 0.4s;
     &:focus {
@@ -129,8 +128,8 @@
 .popover {
   border: solid 1px #881e32;
   border-radius: 15px 15px 0px 0px;
-  width: 150px;
-  height: 112px;
+  width: 160px;
+  height: 130px;
   background-color: $red;
   display: flex;
   justify-content: center;
