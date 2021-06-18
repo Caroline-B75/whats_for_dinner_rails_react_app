@@ -27,6 +27,7 @@ import "bootstrap";
 import {allowPopovers} from "../plugins/popovers.js"
 import {allowTooltips} from "../plugins/tooltips.js"
 import {basculeForm} from "../plugins/display_item_quantity_update_form.js";
+import { initStarRating } from '../plugins/init_star_rating.js';
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
@@ -37,6 +38,7 @@ document.addEventListener('turbolinks:load', () => {
   allowPopovers();
   allowTooltips();
   basculeForm();
+  initStarRating();
 });
 
 $('#myModal').on('shown.bs.modal', function () {
