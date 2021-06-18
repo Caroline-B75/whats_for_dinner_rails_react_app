@@ -1,136 +1,137 @@
   <div class="menu-banner shadow-lg">
     <div class="content-container">
 
-      <div class="row g-5 mb-4">
-        <div class="col-auto">
-          <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
-            edit_menu_path(@menu, id: current_user.menus.last.id),
-            method: :get %>
+        <div class="row g-5 mb-4">
+          <div class="col-auto">
+            <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
+              edit_menu_path(@menu, id: current_user.menus.last.id),
+              method: :get %>
+          </div>
+          <div class="col">
+            <h4>Modifier mon menu</h4>  
+          </div>
         </div>
-        <div class="col">
-          <h4>Modifier mon menu</h4>  
-        </div>
-      </div>
 
-      <div class="grocery-container mx-auto">
+      <div class="menu-container">
+        <div class="grocery-container mx-auto">
 
-        <h1 class="grocery-list-title">Ma liste de courses</h1>
-        <h4 class="text-center mb-3">(pour les <%= "#{@menu.menu_recipes.length}" %> repas du menu)</h4>
-                  <% if @grocery_items.length == 0 %>
+          <h1 class="grocery-list-title">Ma liste de courses</h1>
+          <h4 class="text-center mb-3">(pour les <%= "#{@menu.menu_recipes.length}" %> repas du menu)</h4>
+                    <% if @grocery_items.length == 0 %>
 
-                    <div class="text-center">
-                      <p class="mb-5">Votre liste de courses est vide. Avez-vous validé votre menu ?</p>
-                      <%= link_to 'Retourner au menu',
-                      edit_menu_path(@menu, id: current_user.menus.last.id),
-                      class: "red-btn",
-                      method: :get %>
-                    </div>
+                      <div class="text-center">
+                        <p class="mb-5">Votre liste de courses est vide. Avez-vous validé votre menu ?</p>
+                        <%= link_to 'Retourner au menu',
+                        edit_menu_path(@menu, id: current_user.menus.last.id),
+                        class: "red-btn",
+                        method: :get %>
+                      </div>
 
-                  <% else %>
+                    <% else %>
 
-                    <div class="container-card-menu-edit mb-5">
-                      <div class="container-grocery">
+                      <div class="container-card-menu-edit mb-5">
+                        <div class="container-grocery">
 
-                        <div class="row d-flex justify-content-end" id="haut">
-                          <div class="col-md-3 d-flex justify-content-end mb-4">
-                            <button type="button" class="red-btn" data-toggle="modal" data-target="#addItem">
-                              Ajouter une course
-                            </button>
+                          <div class="row d-flex justify-content-end" id="haut">
+                            <div class="d-flex justify-content-end mb-4">
+                              <button type="button" class="red-btn" data-toggle="modal" data-target="#addItem">
+                                Ajouter une course
+                              </button>
+                            </div>
                           </div>
-                        </div>
 
-                        <div id="addItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addItemTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content-grocery">
-                              <div class="modal-header">
-                                <h5 class="modal-title-grocery" id="addItemTitle">Ajouter dans ma liste de course :</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">×</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <%= simple_form_for([@menu, @grocery_item]) do |f| %>
-                                  <%= f.input :name, placeholder: "article à ajouter", label: false, input_html: { maxlength: 40 } %>
-                                  <%= f.input :quantity, placeholder: "quantité", label: false %>
-                                  <%= f.input :unit, collection: Ingredient::UNIT, prompt: "unité de mesure", label: false %>
-                                  <%= f.input :category, collection: Ingredient::CATEGORY, prompt: "au rayon", label: false %>
-                                  <%= f.input :menu_recipe_id, as: :hidden %>
-                                  <%= f.input :checked, as: :hidden %>
-                                  <%= f.button :submit, "Ajouter à ma liste", class: "yellow-btn mb-3"%>
-                                <% end %>
+                          <div id="addItem" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="addItemTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content-grocery">
+                                <div class="modal-header">
+                                  <h5 class="modal-title-grocery" id="addItemTitle">Ajouter dans ma liste de course :</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <%= simple_form_for([@menu, @grocery_item]) do |f| %>
+                                    <%= f.input :name, placeholder: "article à ajouter", label: false, input_html: { maxlength: 40 } %>
+                                    <%= f.input :quantity, placeholder: "quantité", label: false %>
+                                    <%= f.input :unit, collection: Ingredient::UNIT, prompt: "unité de mesure", label: false %>
+                                    <%= f.input :category, collection: Ingredient::CATEGORY, prompt: "au rayon", label: false %>
+                                    <%= f.input :menu_recipe_id, as: :hidden %>
+                                    <%= f.input :checked, as: :hidden %>
+                                    <%= f.button :submit, "Ajouter à ma liste", class: "yellow-btn mb-3"%>
+                                  <% end %>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="grid">
+                          <div class="grid">
 
-                          <% Ingredient::CATEGORY.each do |category| %>
-                            
-                            <% if @grocery_items.where(category: category).present? %>
+                            <% Ingredient::CATEGORY.each do |category| %>
+                              
+                              <% if @grocery_items.where(category: category).present? %>
 
-                              <div class="block">
-                                  <h3 class="grocery-list-category"><%= category %> :</h3>
-                                    <% @grocery_items.each do |grocery_item| %>
-                                      <% if category == grocery_item.category %>
+                                <div class="block">
+                                    <h3 class="grocery-list-category"><%= category %> :</h3>
+                                      <% @grocery_items.each do |grocery_item| %>
+                                        <% if category == grocery_item.category %>
 
-                                        <div class="row">
+                                          <div class="row">
 
-                                          <div class="col-11">
-                                            <%= simple_form_for grocery_item do |f| %>
-                                              <%= f.check_box :checked, class: "check-done mr-1", onchange: "this.form.submit()"%>
-                                              <%= f.label :quantity, "#{grocery_item.name} - #{number_with_precision(grocery_item.quantity, :delimiter => " ", :separator => ",", strip_insignificant_zeros: true)} #{grocery_item.unit}", { class: "#{grocery_item.checked ? 'item-bought' : 'item-to-buy'}" } %>
-                                            <% end %>
+                                            <div class="col-11">
+                                              <%= simple_form_for grocery_item do |f| %>
+                                                <%= f.check_box :checked, class: "check-done mr-1", onchange: "this.form.submit()"%>
+                                                <%= f.label :quantity, "#{grocery_item.name} - #{number_with_precision(grocery_item.quantity, :delimiter => " ", :separator => ",", strip_insignificant_zeros: true)} #{grocery_item.unit}", { class: "#{grocery_item.checked ? 'item-bought' : 'item-to-buy'}" } %>
+                                              <% end %>
+                                            </div>
+
+                                            <div class='pencil' id='<%= "#{grocery_item.id}" %>'>
+                                              <i class="fas fa-pencil-alt" ></i>
+                                            </div>
+
                                           </div>
 
-                                          <div class='pencil' id='<%= "#{grocery_item.id}" %>'>
-                                            <i class="fas fa-pencil-alt" ></i>
-                                          </div>
+                                          <div class ="item_update_form" id='display<%= "#{grocery_item.id}" %>'>
 
-                                        </div>
+                                            <div>
 
-                                        <div class ="item_update_form" id='display<%= "#{grocery_item.id}" %>'>
-
-                                          <div>
-
-                                            <%= simple_form_for(grocery_item, remote: true) do |f| %>
-                                              <div class="row">
-                                                <div class="col-12 col-md-6 col-lg-4 col-item-update">
-                                                  <%= f.input :quantity, placeholder: "nouvelle quantité", label: false %>
+                                              <%= simple_form_for(grocery_item, remote: true) do |f| %>
+                                                <div class="row">
+                                                  <div class="col-12 col-md-6 col-lg-4 col-item-update">
+                                                    <%= f.input :quantity, placeholder: "nouvelle quantité", label: false %>
+                                                  </div>
+                                                  <div class="col-12 col-md-6 col-lg-8 col-item-update">
+                                                    <%= f.input :unit, collection: Ingredient::UNIT, prompt: "unité de mesure", label: false %>
+                                                  </div>
                                                 </div>
-                                                <div class="col-12 col-md-6 col-lg-8 col-item-update">
-                                                  <%= f.input :unit, collection: Ingredient::UNIT, prompt: "unité de mesure", label: false %>
+                                                <div class="row">
+                                                  <%= f.button :submit, "Enregistrer", class: "yellow-btn ml-3 mb-3"%>
                                                 </div>
-                                              </div>
-                                              <div class="row">
-                                                <%= f.button :submit, "Enregistrer", class: "yellow-btn ml-3 mb-3"%>
-                                              </div>
-                                            <% end %>
+                                              <% end %>
+
+                                            </div>
 
                                           </div>
 
-                                        </div>
-
+                                        <% end %>
                                       <% end %>
-                                    <% end %>
 
-                              </div>
+                                </div>
+                              <% end %>
+
                             <% end %>
+                          </div>
 
-                          <% end %>
+                          <div class="col-md-3 offset-md-9 text-right">
+                            <a href="#haut"><i class="fas fa-angle-double-up" style="color: black;"></i></a>
+                          </div>
+
                         </div>
-
-                        <div class="col-md-3 offset-md-9 text-right">
-                          <a href="#haut"><i class="fas fa-angle-double-up" style="color: black;"></i></a>
-                        </div>
-
                       </div>
-                    </div>
-                  <% end %>
+                    <% end %>
 
-        </div>
+          </div>
 
-
+      </div>
     </div>
   </div>
 </div>
