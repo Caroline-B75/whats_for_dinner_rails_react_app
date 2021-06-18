@@ -68,8 +68,9 @@
 
 .block {
   width: 100%;
+  min-width: 480px;
   background:white;
-  padding: 2em;
+  padding: 1.5em;
   display: inline-block;
   margin: 0 0 1em;
   font-size:1em;
