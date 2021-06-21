@@ -10,14 +10,6 @@
         <div class="col">
           <h4>Retourner à mon menu</h4>  
         </div>
-        <div class="col text-right">
-          <h4>Voir ma liste des courses</h4>
-        </div>
-        <div class="col-auto text-right">
-          <%= link_to '<i class="fas fa-arrow-alt-circle-right fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
-            menu_grocery_items_path(current_user.menus.last),
-            method: :get %>
-        </div>
       </div>
       <div class="row g-5">
         <div class="col-md-3 col-lg-2 mt-3 mb-4">
