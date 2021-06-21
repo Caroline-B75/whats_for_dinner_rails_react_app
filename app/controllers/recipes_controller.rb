@@ -8,7 +8,7 @@ class RecipesController < ApplicationController
 
   def index
     @search = Recipe.search(params[:q])
-    @recipes = policy_scope(@search.result.includes(:ingredients)).order(id: :desc)
+    @recipes = policy_scope(@search.result.includes(:ingredients, :favorite_recipes)).order(id: :desc)
     @recipe = Recipe.new
   end
 
@@ -48,6 +48,12 @@ class RecipesController < ApplicationController
     recipe = Recipe.find(@menu_recipe.recipe_id)
     current_user.favorites << recipe
     redirect_to menu_recipe_path(@menu_recipe), notice: "#{recipe.name} a été ajouté à vos recettes favorites"
+    authorize recipe
+  end
+
+  def favorite?
+    @recipe = Recipe.find(@menu_recipe.recipe_id)
+    current_user.favorites.include?(@recipe)
     authorize recipe
   end
 

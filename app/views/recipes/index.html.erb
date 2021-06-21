@@ -16,8 +16,9 @@
           <%# <h3 class="mb-3">Filtrer les recettes</h3> %>
             <%= search_form_for @search do |f| %>
 
+
               <h5><%= f.label "Catégorie :" %></h5>
-                <%= f.collection_select :filters_id_in_any, Filter.all, :id, :name,{include_blank: true}, {class:"form-control-filters", onchange: 'this.form.submit();' } %>
+                <%= f.collection_select :filters_id_in_any, Filter.all, :id, :name, {include_blank: true}, {class:"form-control-filters", onchange: 'this.form.submit();' } %>
               <br />
 
               <h5><%= f.label :ingredients_name_cont, "Ingrédient :" %></h5>
@@ -26,8 +27,11 @@
               <h5><%= f.label :name_cont, "Recette contenant le mot :" %></h5>
               <%= f.search_field :name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br /><br />
 
+              <h5><%= f.label "Mes recettes favorites :" %>
+                <%= f.check_box :favorite_recipes_id_not_null,  { onchange: 'this.form.submit();' }, true, false %></h5>
+              <br />
+
               <div>
-                <%# <%= f.submit value: 'Filtrer', class: 'red-btn mr-3' %>
                 <strong><%= link_to "Effacer les filtres", request.path, class: "btn btn-secondary" %></strong>
               </div>
 
