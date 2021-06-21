@@ -51,12 +51,6 @@ class RecipesController < ApplicationController
     authorize recipe
   end
 
-  def favorite?
-    @recipe = Recipe.find(@menu_recipe.recipe_id)
-    current_user.favorites.include?(@recipe)
-    authorize recipe
-  end
-
   def unfavorite
     @menu_recipe = MenuRecipe.find(params[:id])
     recipe = Recipe.find(@menu_recipe.recipe_id)
