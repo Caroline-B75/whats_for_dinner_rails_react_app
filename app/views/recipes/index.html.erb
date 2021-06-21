@@ -1,86 +1,117 @@
 <div class="menu-banner shadow-lg">
   <div class="content-container">
     <main>
+
       <div class="row g-5 mb-4">
+
         <div class="col-auto">
           <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
             edit_menu_path(@menu, id: current_user.menus.last.id),
             method: :get %>
         </div>
+
         <div class="col">
           <h4>Retourner à mon menu</h4>  
         </div>
+
       </div>
+
       <div class="row g-5">
+
         <div class="col-md-3 col-lg-2 mt-3 mb-4">
-          <%# <h3 class="mb-3">Filtrer les recettes</h3> %>
-            <%= search_form_for @search do |f| %>
 
+          <%= search_form_for @search do |f| %>
 
-              <h5><%= f.label "Catégorie :" %></h5>
-                <%= f.collection_select :filters_id_in_any, Filter.all, :id, :name, {include_blank: true}, {class:"form-control-filters", onchange: 'this.form.submit();' } %>
-              <br />
+            <h5><%= f.label "Catégorie :" %></h5>
+              <%= f.collection_select :filters_id_in_any, Filter.all, :id, :name, {include_blank: true}, {class:"form-control-filters", onchange: 'this.form.submit();' } %>
+            <br />
 
-              <h5><%= f.label :ingredients_name_cont, "Ingrédient :" %></h5>
-              <%= f.search_field :ingredients_name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br />
+            <h5><%= f.label :ingredients_name_cont, "Ingrédient :" %></h5>
+            <%= f.search_field :ingredients_name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br />
 
-              <h5><%= f.label :name_cont, "Recette contenant le mot :" %></h5>
-              <%= f.search_field :name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br /><br />
+            <h5><%= f.label :name_cont, "Recette contenant le mot :" %></h5>
+            <%= f.search_field :name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br /><br />
 
-              <h5><%= f.label "Mes recettes favorites :" %>
-                <%= f.check_box :favorite_recipes_id_not_null,  { onchange: 'this.form.submit();' }, true, false %></h5>
-              <br />
+            <h5><%= f.label "Mes recettes favorites :" %>
+              <%= f.check_box :favorite_recipes_id_not_null,  { onchange: 'this.form.submit();' }, true, false %></h5>
+            <br />
 
-              <div>
-                <strong><%= link_to "Effacer les filtres", request.path, class: "btn btn-secondary" %></strong>
-              </div>
+            <div>
+              <strong><%= link_to "Effacer les filtres", request.path, class: "btn btn-secondary" %></strong>
+            </div>
 
-            <% end %>
+          <% end %>
         </div>
 
         <div class="col-md-9 col-lg-10 mb-4">
-          <div class="recipes-container">
-            <% @recipes.each do |recipe| %>
-              <div class="card-menu-edit">
-                <div class="text-right">
-                  <%= link_to '<i class="fas fa-trash-alt" style="color: gray;"></i>'.html_safe,
-                    recipe_path(recipe),
-                    method: :delete,
-                    class: "text-danger",
-                    data: { confirm: "Il faut d'abord supprimer les préparations de la recette." } %>
 
-                  <%= link_to '<i class="fas fa-pen" style="color: gray;"></i>'.html_safe,
-                    edit_recipe_path(recipe),
-                    method: :get %>
+          <div class="recipes-container">
+
+            <% @recipes.each do |recipe| %>
+
+              <div class="card-menu-edit text-right">
+
+                <div class="favorite-unfavorite">
+                  <% if current_user.favorites.include?(recipe) %>
+                    <% recipe_in_menu_recipe = MenuRecipe.find_by(recipe_id: recipe.id)  %>
+                    <%= link_to '<i class="fas fa-heart" style="font-size: 20px"></i>'.html_safe,
+                      recipe_unfavorite_path(@menu_recipe, id: recipe_in_menu_recipe.id, menu_id: current_user.menus.last.id),
+                      method: :delete,
+                      class: 'tooltips favorite-btn',
+                      title: "Retirer des favoris",
+                      data: { toggle: 'tooltip', placement: 'top' },
+                      remote: true %>
+                  <% else %>
+                    <% recipe_in_menu_recipe = MenuRecipe.find_by(recipe_id: recipe.id)  %>
+                    <%= link_to '<i class="far fa-heart" style="font-size: 20px"></i>'.html_safe,
+                      recipe_favorite_path(@menu_recipe, id: recipe_in_menu_recipe.id, menu_id: current_user.menus.last.id),
+                      method: :post,
+                      class: 'tooltips favorite-btn',
+                      title: "Ajouter aux favoris",
+                      data: { toggle: 'tooltip', placement: 'top' },
+                      remote: true %>
+                  <% end %>
                 </div>
+
 
                 <div class="card-recipe">
 
-                 <div class="img">
+                  <div class="img">
                    <%= cl_image_tag recipe.photo.key%>
-                 </div>
+                  </div>
 
                   <div class="card-recipe-title">
-                    <a><%= recipe.name.capitalize %></a>
+                    <a tabindex="0" class="btn-title-popover" role="button" data-placement="top" data-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= render(partial: 'shared_menus/average_rating', locals: {recipe: Recipe.find(recipe.id)}).html_safe%>"><%= Recipe.find(recipe.id).name %></a>
                   </div>
-                    <% if current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id) %>
-                  <div class="card-recipe-options" id="card-recipe-option-remove">
-                    <% recipe_in_menu = current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id)  %>
-                      <%= link_to 'x'.html_safe, 
-                        menu_menu_recipe_path(@menu_recipe, id: recipe_in_menu.id, menu_id: current_user.menus.last.id),
-                        class: "btn-remove-recipe",
-                        method: :delete %>
-                  </div>
-                    <% else %>
+
+                  <% if current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id) %>
+                    <div class="card-recipe-options" id="card-recipe-option-remove">
+                      <% recipe_in_menu = current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id)  %>
+                        <%= link_to 'x'.html_safe, 
+                          menu_menu_recipe_path(@menu_recipe, id: recipe_in_menu.id, menu_id: current_user.menus.last.id),
+                          class: "btn-remove-recipe",
+                          method: :delete %>
+                    </div>
+                  <% else %>
                     <div class="card-recipe-options">
                       <%= link_to '+'.html_safe, 
                         menu_menu_recipes_path(@menu, menu_id: current_user.menus.last.id, recipe_id: recipe.id),
                         class: "btn-add-recipe",
                         method: :post %>
-                  </div>
-                    <% end %>
+                    </div>
+                  <% end %>
 
                 </div>
+
+                  <%= link_to '<i class="fas fa-trash-alt" style="color: brown;"></i>'.html_safe,
+                    recipe_path(recipe),
+                    method: :delete,
+                    class: "text-danger",
+                    data: { confirm: "Il faut d'abord supprimer les préparations de la recette." } %>
+
+                  <%= link_to '<i class="fas fa-pen" style="color: brown;"></i>'.html_safe,
+                    edit_recipe_path(recipe),
+                    method: :get %>
               </div>
             <% end %>
           </div>
