@@ -26,6 +26,28 @@
         <% @menu.menu_recipes.order(:id).each do |menu_recipe| %>
           <div class="card-menu-edit">
 
+
+                <div class="favorite-unfavorite">
+                  <% if @current_user.favorites.include? Recipe.find(menu_recipe.recipe_id) %>
+                    <%= link_to '<i class="fas fa-heart" style="font-size: 20px"></i>'.html_safe,
+                      recipe_unfavorite_path(menu_recipe),
+                      method: :delete,
+                      class: 'tooltips favorite-btn',
+                      title: "Retirer des favoris",
+                      data: { toggle: 'tooltip', placement: 'top' },
+                      remote: true %>
+                  <% else %>
+                    <%= link_to '<i class="far fa-heart" style="font-size: 20px"></i>'.html_safe,
+                      recipe_favorite_path(menu_recipe),
+                      method: :post,
+                      class: 'tooltips favorite-btn',
+                      title: "Ajouter aux favoris",
+                      data: { toggle: 'tooltip', placement: 'top' },
+                      remote: true %>
+                  <% end %>
+                </div>
+
+
             <% if menu_recipe.done == true %>
               <div class="card-recipe" id="card-recipe-done">
             <% else %>
