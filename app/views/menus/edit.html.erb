@@ -1,68 +1,84 @@
 <div class="menu-banner shadow-lg">
-  <div class="content-container">
-    <h1 class="h1 justify-content-center mb-5 mt-5">Voici votre menu, vous pouvez le personnaliser.</h1>
+</div>
+
+<div id="container-up">
+  
+  <div class=" d-flex flex-column align-items-center">
     
-    <div class="menu-container">
+    <div class="content-container text-center">
+      
+      <h1 class="h1 justify-content-center mb-5 mt-5">Voici votre menu, vous pouvez le personnaliser.</h1>
+      
+      <div class="container-card-menu-show flex-column">
+        
+        <div class="menu-container">
+    
+          <% @menu.menu_recipes.order(:id).each do |menu_recipe| %>
+            <div class="card-menu-edit">
+              
+              <div class="card-recipe">
 
-      <% @menu.menu_recipes.order(:id).each do |menu_recipe| %>
-        <div class="card-menu-edit">
-          <div class="card-recipe">
+                <div class="img">
+                  <%= cl_image_tag Recipe.find(menu_recipe.recipe_id).photo.key%>
+                </div>
 
-            <div class="img">
-              <%= cl_image_tag Recipe.find(menu_recipe.recipe_id).photo.key%>
+                <div class="card-recipe-title">
+                  <a tabindex="0" class="btn-title-popover" role="button" data-placement="top" data-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= render(partial: 'shared_menus/average_rating', locals: {recipe: Recipe.find(menu_recipe.recipe_id)}).html_safe%>"><%= Recipe.find(menu_recipe.recipe_id).name %></a>
+                </div>
+
+              </div>
+
+              <div class="footer-card-menu-edit">
+                <%= link_to '<i class="fas fa-sync"></i>'.html_safe, switch_menu_recipe_path(@menu, menu_recipe),
+                  method: :post,
+                  remote: true,
+                  title: "Changer de recette",
+                  data: { toggle: 'tooltip', placement: 'top' } %>
+                <p>|</p>
+                <%= link_to '<i class="fas fa-times"></i>'.html_safe,
+                  menu_menu_recipe_path(@menu, menu_recipe),
+                  method: :delete,
+                  remote: true,
+                  class: 'tooltips',
+                  title: "Supprimer ce repas",
+                  data: { toggle: 'tooltip', placement: 'top' } %>
+                <p>|</p>
+                <%= simple_form_for(menu_recipe) do |f| %>
+                  <%= link_to '<i class="fas fa-user-friends"></i>'.html_safe,
+                    "#",
+                    class: 'tooltips',
+                    title: "Modifier le nombre de personnes",
+                    data: { toggle: 'tooltip', placement: 'top' },
+                    remote: true %>
+                  <%= f.select :number_of_people, (1..100), {}, { value: menu_recipe.number_of_people, onchange: 'this.form.submit();' } %>
+                <% end %>
+              </div>
+
             </div>
-
-            <div class="card-recipe-title">
-              <a tabindex="0" class="btn-title-popover" role="button" data-placement="top" data-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= render(partial: 'shared_menus/average_rating', locals: {recipe: Recipe.find(menu_recipe.recipe_id)}).html_safe%>"><%= Recipe.find(menu_recipe.recipe_id).name %></a>
-            </div>
-
-          </div>
-
-          <div class="footer-card-menu-edit">
-            <%= link_to '<i class="fas fa-sync"></i>'.html_safe, switch_menu_recipe_path(@menu, menu_recipe),
+          <% end %>
+          
+          <div>
+            <h5><%= link_to 'Ajouter une recette au hasard'.html_safe,
+              menu_menu_recipes_path(@menu, recipe_id: "random"),
               method: :post,
               remote: true,
-              title: "Changer de recette",
-              data: { toggle: 'tooltip', placement: 'top' } %>
-            <p>|</p>
-            <%= link_to '<i class="fas fa-times"></i>'.html_safe,
-              menu_menu_recipe_path(@menu, menu_recipe),
-              method: :delete,
-              remote: true,
-              class: 'tooltips',
-              title: "Supprimer ce repas",
-              data: { toggle: 'tooltip', placement: 'top' } %>
-            <p>|</p>
-            <%= simple_form_for(menu_recipe) do |f| %>
-              <%= link_to '<i class="fas fa-user-friends"></i>'.html_safe,
-                "#",
-                class: 'tooltips',
-                title: "Modifier le nombre de personnes",
-                data: { toggle: 'tooltip', placement: 'top' },
-                remote: true %>
-              <%= f.select :number_of_people, (1..100), {}, { value: menu_recipe.number_of_people, onchange: 'this.form.submit();' } %>
-            <% end %>
+              class: "btn-add-meal"%></h5>
+            <h5><%= link_to 'Ajouter une recette précise'.html_safe,
+              recipes_path,
+              method: :get,
+              class: "btn-add-meal"%></h5>
           </div>
-
         </div>
-      <% end %>
-      
-      <div>
-        <h5><%= link_to 'Ajouter une recette au hasard'.html_safe,
-          menu_menu_recipes_path(@menu, recipe_id: "random"),
-          method: :post,
-          remote: true,
-          class: "btn-add-meal"%></h5>
-        <h5><%= link_to 'Ajouter une recette précise'.html_safe,
-          recipes_path,
-          method: :get,
-          class: "btn-add-meal"%></h5>
-      </div>
-    </div>
+
     <div class="text-center mb-5">
       <p id="validation_menu">Validez votre nouveau menu pour créer votre liste de courses.</p>
       <%= link_to 'Valider mon menu',  menu_create_grocery_list_path(@menu), method: :post, class: "red-btn" %>
     </div>
-  </div>
-</div>
+      </div>
 
+    </div>
+
+
+  </div>
+
+</div>

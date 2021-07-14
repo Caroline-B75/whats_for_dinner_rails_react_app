@@ -16,7 +16,10 @@
         <div class="grocery-container mx-auto">
 
           <h1 class="grocery-list-title">Ma liste de courses</h1>
-          <h4 class="text-center mb-3">(pour les <%= "#{@menu.menu_recipes.length}" %> repas du menu)</h4>
+          <h4 class="text-center mb-3">(pour les <%= "#{@menu.menu_recipes.length}" %> repas du <%= link_to 'menu',
+                        menu_path(@menu, id: current_user.menus.last.id),
+                        class: "link-menu",
+                        method: :get %>)</h4>
                     <% if @grocery_items.length == 0 %>
 
                       <div class="text-center">

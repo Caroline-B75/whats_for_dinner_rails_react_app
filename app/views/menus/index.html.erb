@@ -1,0 +1,39 @@
+  
+<div class="menu-banner">
+</div>
+
+<div id="container-up">
+    <div class=" d-flex flex-column align-items-center">
+      <div class="content-container text-center">
+        <h1>Mes menus</h1>
+        <% @final_menus.each do | menu | %>
+          <p class="mb-2 mt-4">Menu créé le <%= menu.created_at.to_s.match(/\d{4}-\d{2}-\d{2}/) %></p>
+          <div class="container-card-menu-show flex-column">
+            <div class="w-100 d-flex justify-content-end mr-4">
+              <%= link_to menu_path(menu, redirect_path: menus_path), method: :delete, remote: true, class: 'tooltips', title: "Supprimer ce menu", data: { toggle: 'tooltip', placement: 'top' }, remote: true do %>
+                <i class="fas fa-times"></i>
+              <% end %>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-wrap">
+              <% menu.menu_recipes.each do |menurecipe| %>
+                <div class="card-menu-edit mb-3">
+                  <div class="card-recipe">
+                    <div class="img-small img img-recipe">
+                      <%= cl_image_tag menurecipe.recipe.photo.key%>
+                    </div>
+                    <div class="card-recipe-title">
+                      <%= link_to menurecipe.recipe.name,  menu_recipe_path(menurecipe), class: "menu-recipe-button" %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="d-flex justify-content-center mt-4 mb-3">
+              <%= link_to 'Liste de course',  menu_grocery_items_path(menu), class: "yellow-btn mr-3 ml-3" %>
+              <%= link_to 'Détails', menu_path(menu), class: "yellow-btn mr-3 ml-3" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>

@@ -96,3 +96,17 @@ ul {
   text-shadow: 1px 1px 1px lightgray;
   font-weight: 600;
 }
+
+.link-menu {
+  color: $red;
+}
+.link-menu:hover {
+  text-decoration: none;
+  color: $red;
+}
+
+a {
+  color: #AD243E;
+  text-decoration: none;
+  background-color: transparent;
+}

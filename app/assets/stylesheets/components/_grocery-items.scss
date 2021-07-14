@@ -95,15 +95,15 @@
 }
 @media (min-width:40.1em){
 	.grid, .menu-container{
-		column-count: 2;
+		column-count: 1;
 	}
 }
 @media (min-width: 61em) {
   .grid, .menu-container {
-	column-count: 3;
+	column-count: 2;
   }
 }
-@media (min-width: 80em) {
+@media (min-width: 95em) {
   .grid, .menu-container {
      column-count: 3;
   }
