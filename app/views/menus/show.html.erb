@@ -17,7 +17,7 @@
           <h4>Modifier mon menu</h4>  
         </div>
         <div class="col text-right">
-          <h4>Voir ma liste des courses</h4>
+          <h4>Voir ma liste de courses</h4>
         </div>
         <div class="col-auto text-right">
           <%= link_to '<i class="fas fa-arrow-alt-circle-right fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
@@ -85,14 +85,14 @@
           <%= link_to 'Valider mon menu',  menu_create_grocery_list_path(@menu), method: :post, class: "red-btn" %>
         <% else %>
           <div class="text-center mb-5">
-            <%= link_to 'Ma liste de course',  menu_grocery_items_path(@menu), class: "red-btn" %>
+            <%= link_to 'Ma liste de courses',  menu_grocery_items_path(@menu), class: "red-btn" %>
           </div>
         <% end %>
 
       </div>
 
         <div class="text-center mb-5">
-              <p id="validation_menu">Partager mon menu et ma liste de course avec un autre utilisateur :</p>
+              <p id="validation_menu">Partager mon menu et ma liste de courses avec un autre utilisateur :</p>
               <%= simple_form_for [ @menu, @access ], remote: true do |f| %>
                 <%= f.input :email, label: false, placeholder: "utilisateur@email.com" %>
                 <p class="pipe-input mb-2">|</p>
