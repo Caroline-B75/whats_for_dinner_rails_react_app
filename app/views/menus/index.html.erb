@@ -6,7 +6,7 @@
     <div class=" d-flex flex-column align-items-center">
       <div class="content-container text-center">
         <h1>Mes menus</h1>
-        <% @final_menus.each do | menu | %>
+        <% @final_menus.sort{|a,b| b.created_at <=> a.created_at}.each do | menu | %>
           <p class="mb-2 mt-4">Menu créé le <%= menu.created_at.to_s.match(/\d{4}-\d{2}-\d{2}/) %></p>
           <div class="container-card-menu-show flex-column">
             <div class="w-100 d-flex justify-content-end mr-4">
