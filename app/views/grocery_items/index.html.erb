@@ -6,7 +6,7 @@
         <div class="row g-5 mb-4">
           <div class="col-auto">
             <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
-              edit_menu_path(@menu, id: current_user.menus.last.id),
+              edit_menu_path(@menu),
               method: :get %>
           </div>
           <div class="col">
@@ -19,7 +19,7 @@
 
             <h1 class="grocery-list-title">Ma liste de courses</h1>
             <h4 class="text-center mb-3">(pour les <%= "#{@menu.menu_recipes.length}" %> repas du <%= link_to 'menu',
-                          menu_path(@menu, id: current_user.menus.last.id),
+                          menu_path(@menu),
                           class: "link-menu",
                           method: :get %>)</h4>
                       <% if @grocery_items.length == 0 %>

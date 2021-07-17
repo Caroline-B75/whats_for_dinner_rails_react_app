@@ -10,7 +10,7 @@
       <div class="row g-5 mb-4">
         <div class="col-auto">
           <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
-            edit_menu_path(@menu, id: current_user.menus.last.id),
+            edit_menu_path(@menu),
             method: :get %>
         </div>
         <div class="col text-left">
@@ -21,7 +21,7 @@
         </div>
         <div class="col-auto text-right">
           <%= link_to '<i class="fas fa-arrow-alt-circle-right fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
-            menu_grocery_items_path(current_user.menus.last),
+            menu_grocery_items_path(@menu),
             method: :get %>
         </div>
       </div>

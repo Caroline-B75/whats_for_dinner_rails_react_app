@@ -13,6 +13,10 @@ class MenuPolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    true
+  end
+
   def show?
     record.users.include?(user)
   end

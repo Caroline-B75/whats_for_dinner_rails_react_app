@@ -31,6 +31,19 @@ class MenusController < ApplicationController
     authorize @menu
   end
 
+  def update
+    @menu = Menu.find(params[:id])
+    if @menu.version.nil?
+      @menu.version = 1
+    else
+      @menu.version = @menu.version.to_i + 1
+    end
+    @menu.update!(diet: @menu.diet, number_of_people: @menu.number_of_people, number_of_meals: @menu.number_of_meals, menu_recipes: @menu.menu_recipes, recipes: @menu.recipes, version: @menu.version)
+    @menu.save
+    authorize @menu
+    redirect_to menu_path(@menu)
+  end
+
   def edit
     @menu = Menu.find(params[:id])
     @random_recipes = create_list_recipes_not_existing(@menu).sample(5)
