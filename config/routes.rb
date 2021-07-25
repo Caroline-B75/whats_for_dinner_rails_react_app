@@ -20,8 +20,8 @@ Rails.application.routes.draw do
   resources :filters
 
   post '/menus/:menu_id/menu_recipes/:id/switch', to: "menu_recipes#switch", as: :switch_menu_recipe
-  post '/menu_recipes/:id/unfavorite', to: "recipes#favorite", as: :recipe_favorite
-  delete '/menu_recipes/:id/favorite', to: "recipes#unfavorite", as: :recipe_unfavorite
+  post '/recipes/:id/unfavorite', to: "recipes#favorite", as: :recipe_favorite
+  delete '/recipes/:id/favorite', to: "recipes#unfavorite", as: :recipe_unfavorite
 
   post '/menus/:id/create_grocery', to: "grocery_items#create_grocery", as: :menu_create_grocery_list
 

@@ -5,11 +5,11 @@ class Recipe < ApplicationRecord
 
   has_many :preparations, dependent: :destroy
   has_many :ingredients, through: :preparations
-  has_many :reviews
-  has_many :menu_recipes
+  has_many :reviews, dependent: :destroy
+  has_many :menu_recipes, dependent: :destroy
   has_many :menus, through: :menu_recipes
-  has_one_attached :photo
-  has_many :favorite_recipes
+  has_one_attached :photo, dependent: :destroy
+  has_many :favorite_recipes, dependent: :destroy
   has_many :favorited_by, through: :favorite_recipes, source: :user
   has_and_belongs_to_many :filters
 

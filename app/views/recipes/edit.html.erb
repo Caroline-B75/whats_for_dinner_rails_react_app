@@ -30,8 +30,8 @@
   <div class="d-flex mr-5 flex-column justify-content-center">
     <h3>Ajouter une préparation</h3>
     <%= simple_form_for (@preparation), url: recipe_preparations_path(@recipe) do |f| %>
-      <%= f.input :quantity %>
       <%= f.association :ingredient, input_html: { class: 'select2' } %>
+      <%= f.input :quantity, required: true %>
       <%= f.submit "Enregistrer", class: "btn btn-success"%>
     <% end %>
   </div>
@@ -47,5 +47,6 @@
 </div>
 
 <div class="text-center m-5">
+
 <%= link_to "Retourner aux recettes", recipes_path, class: "btn btn-primary"  %>
 </div>

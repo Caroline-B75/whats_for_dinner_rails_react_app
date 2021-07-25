@@ -55,10 +55,12 @@
               <div class="card-menu-edit text-right">
 
                 <div class="favorite-unfavorite">
-                  <% if @current_user.favorites.include?(recipe) %>
+                  <% if @current_user.favorites.include?(recipe) == nil %>
+                    <p>pas fav</p>
+                  <% elsif @current_user.favorites.include?(recipe) %>
                     <% recipe_in_menu_recipe = MenuRecipe.find_by(recipe_id: recipe.id)  %>
                     <%= link_to '<i class="fas fa-heart" style="font-size: 20px"></i>'.html_safe,
-                      recipe_unfavorite_path(@menu_recipe, id: recipe_in_menu_recipe.id, menu_id: @current_user.menus.last.id),
+                      recipe_unfavorite_path(recipe),
                       method: :delete,
                       class: 'tooltips favorite-btn',
                       title: "Retirer des favoris",
@@ -67,7 +69,7 @@
                   <% else %>
                     <% recipe_in_menu_recipe = MenuRecipe.find_by(recipe_id: recipe.id)  %>
                     <%= link_to '<i class="far fa-heart" style="font-size: 20px"></i>'.html_safe,
-                      recipe_favorite_path(@menu_recipe, id: recipe_in_menu_recipe.id, menu_id: @current_user.menus.last.id),
+                      recipe_favorite_path(recipe),
                       method: :post,
                       class: 'tooltips favorite-btn',
                       title: "Ajouter aux favoris",

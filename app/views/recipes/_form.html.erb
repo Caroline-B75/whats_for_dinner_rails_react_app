@@ -1,10 +1,10 @@
   
 <%= simple_form_for @recipe do |f| %>
   <%= f.input :name %>
-  <%= f.input :difficulty, collection: Recipe::DIFFICULTY  %>
-  <%= f.input :price, collection: Recipe::PRICE  %>
-  <%= f.input :diet, collection: Recipe::DIET %>
-  <%= f.input :time %>
+  <%= f.input :difficulty, required: true, collection: Recipe::DIFFICULTY  %>
+  <%= f.input :price, required: true, collection: Recipe::PRICE  %>
+  <%= f.input :diet, required: true, collection: Recipe::DIET %>
+  <%= f.input :time, required: true %>
   <%= f.label "Filtres" %><br />
   <div class="new-recipe-filters-container">
     <%= f.collection_check_boxes :filter_ids, Filter.all, :id, :name do |b| %>
@@ -15,6 +15,6 @@
     <% end %>
   </div>
   <%= f.input :content, as: :text %>
-  <%= f.input :photo, as: :file %>
+  <%= f.input :photo, required: true, as: :file %>
   <%= f.button :submit, "Enregistrer", class: "btn btn-success"%>
 <% end %>

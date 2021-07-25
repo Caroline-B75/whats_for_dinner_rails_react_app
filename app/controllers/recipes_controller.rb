@@ -44,21 +44,37 @@ class RecipesController < ApplicationController
   end
 
   def favorite
-    @menu_recipe = MenuRecipe.find(params[:id])
-    recipe = Recipe.find(@menu_recipe.recipe_id)
-    current_user.favorites << recipe
-    flash[:notice] = "#{recipe.name} a été ajouté à vos recettes favorites"
-    redirect_to request.referrer
-    authorize recipe
+    if !Recipe.find(params[:id]).nil?
+      recipe = Recipe.find(params[:id])
+      current_user.favorites << recipe
+      flash[:notice] = "#{recipe.name} a été ajouté à vos recettes favorites"
+      redirect_to request.referrer
+      authorize recipe
+    else
+      @menu_recipe = MenuRecipe.find(params[:id])
+      recipe = Recipe.find(@menu_recipe.recipe_id)
+      current_user.favorites << recipe
+      flash[:notice] = "#{recipe.name} a été ajouté à vos recettes favorites"
+      redirect_to request.referrer
+      authorize recipe
+    end
   end
 
   def unfavorite
-    @menu_recipe = MenuRecipe.find(params[:id])
-    recipe = Recipe.find(@menu_recipe.recipe_id)
-    current_user.favorites.delete(recipe)
-    flash[:notice] = "#{recipe.name} a été retiré de vos recettes favorites"
-    redirect_to request.referrer
-    authorize recipe
+    if !Recipe.find(params[:id]).nil?
+      recipe = Recipe.find(params[:id])
+      current_user.favorites.delete(recipe)
+      flash[:notice] = "#{recipe.name} a été retiré de vos recettes favorites"
+      redirect_to request.referrer
+      authorize recipe
+    else
+      @menu_recipe = MenuRecipe.find(params[:id])
+      recipe = Recipe.find(@menu_recipe.recipe_id)
+      current_user.favorites.delete(recipe)
+      flash[:notice] = "#{recipe.name} a été retiré de vos recettes favorites"
+      redirect_to request.referrer
+      authorize recipe
+    end
   end
 
   private
