@@ -112,7 +112,7 @@
                     recipe_path(recipe),
                     method: :delete,
                     class: "text-danger",
-                    data: { confirm: "Il faut d'abord supprimer les préparations de la recette." } %>
+                    data: { confirm: "Attention, vous allez définitivement supprimer la recette pour tout le monde..." } %>
 
                   <%= link_to '<i class="fas fa-pen" style="color: brown;"></i>'.html_safe,
                     edit_recipe_path(recipe),

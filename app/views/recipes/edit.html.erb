@@ -1,52 +1,64 @@
+<div class="menu-banner shadow-lg">
+</div>
 
-<h2 class="text-center mt-5">Modifier la recette : <%= @recipe.name %></h2>
-<div class="row justify-content-center">
-  <div class="col-sm-11 col-md-10 col-lg-6 mb-5">
-    <%= cl_image_tag @recipe.photo.key, height: 150, crop: :fill %>
-    <%= render "form", recipe: @recipe %>
+  <div class="content-container">
+    <div id="container-up">
+
+      <h1 class="h1 justify-content-center mb-5">Modifier la recette : <%= @recipe.name %></h2>
+
+      <div class="menu-recipe-container">
+
+        <div class="row">
+
+          <div class="col-sm-12 col-md-12 col-lg-4">
+            <%= cl_image_tag @recipe.photo.key, class: "recipe-image" %>
+
+            <h3>Ingrédients :</h3>
+            <% if @recipe.preparations.any? %>
+              <ul>
+                <% @recipe.preparations.order(id: :asc).each do |preparation| %>
+                  <li>
+                    <%= preparation.quantity %> <%= Ingredient.find(preparation.ingredient_id).unit %> <%= Ingredient.find(preparation.ingredient_id).name %> - 
+                    <%= link_to "Supprimer",
+                      recipe_preparation_path(preparation),
+                      method: :delete %>
+                  </li>
+                <% end %>
+              </ul>
+            <% else %>
+              <p>Aucun ingrédient n'est encore associé à cette recette.</p>
+            <% end %>
+
+              <div class="d-flex mt-5 mb-5 flex-column justify-content-center">
+                <h3>Ajouter un ingrédient</h3>
+                <%= simple_form_for (@preparation), url: recipe_preparations_path(@recipe) do |f| %>
+                  <%= f.association :ingredient, collection: Ingredient.order('name ASC'), label: "ingrédient", required: true, input_html: { class: 'select2' } %>
+                  <%= f.input :quantity, label: "quantité (pour 1 personne)" %>
+                  <%= f.submit "Enregistrer", class: "btn btn-success"%>
+                <% end %>
+              </div>
+              <div class="d-flex mt-3 mb-3 flex-column justify-content-center">
+                <h3>Enregistrer un nouvel ingrédient</h3>
+                <%= simple_form_for @ingredient, url: ingredients_path(recipe_id: @recipe.id) do |f| %>
+                  <%= f.input :name, label: "nom", required: true %>
+                  <%= f.input :unit, label: "unité de mesure", required: true, collection: Ingredient::UNIT, input_html: { class: 'select2' } %>
+                  <%= f.input :category, label: "catégorie", required: true, collection: Ingredient::CATEGORY, input_html: { class: 'select2' }  %>
+                  <%= f.submit "Enregistrer", class: "btn btn-success"%>
+                <% end %>
+              </div>
+
+          </div>
+
+          <div class="col-sm-12 col-md-12 col-lg-8 mb-3">
+            <%= render "form", recipe: @recipe %>
+          </div>          
+
+        </div>
+      </div>
+
+      <div class="text-center mb-5">
+        <%= link_to "Retourner aux recettes", recipes_path, class: "btn red-btn"  %>
+      </div>
+
+    </div>
   </div>
-</div>
-
-<div class="d-flex flex-column align-items-center mb-5">
-  <h3>Préparations associées à la recette :</h3>
-  <% if @recipe.preparations.any? %>
-    <ul>
-      <% @recipe.preparations.order(id: :asc).each do |preparation| %>
-        <li>
-          <%= preparation.quantity %> <%= Ingredient.find(preparation.ingredient_id).unit %> <%= Ingredient.find(preparation.ingredient_id).name %> - 
-          <%= link_to "Supprimer",
-            recipe_preparation_path(preparation),
-            method: :delete %>
-        </li>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>Aucune préparation n'est encore associée à cette recette.</p>
-  <% end %>
-
-</div>
-
-<div class="d-flex justify-content-center align-items-baseline">
-  <div class="d-flex mr-5 flex-column justify-content-center">
-    <h3>Ajouter une préparation</h3>
-    <%= simple_form_for (@preparation), url: recipe_preparations_path(@recipe) do |f| %>
-      <%= f.association :ingredient, input_html: { class: 'select2' } %>
-      <%= f.input :quantity, required: true %>
-      <%= f.submit "Enregistrer", class: "btn btn-success"%>
-    <% end %>
-  </div>
-  <div class="d-flex ml-5 flex-column justify-content-center">
-    <h3>Enregistrer un nouvel ingrédient</h3>
-    <%= simple_form_for @ingredient, url: ingredients_path(recipe_id: @recipe.id) do |f| %>
-      <%= f.input :name %>
-      <%= f.input :unit, collection: Ingredient::UNIT, input_html: { class: 'select2' } %>
-      <%= f.input :category, collection: Ingredient::CATEGORY, input_html: { class: 'select2' }  %>
-      <%= f.submit "Enregistrer", class: "btn btn-success"%>
-    <% end %>
-  </div>
-</div>
-
-<div class="text-center m-5">
-
-<%= link_to "Retourner aux recettes", recipes_path, class: "btn btn-primary"  %>
-</div>

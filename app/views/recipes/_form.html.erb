@@ -1,20 +1,21 @@
-  
-<%= simple_form_for @recipe do |f| %>
-  <%= f.input :name %>
-  <%= f.input :difficulty, required: true, collection: Recipe::DIFFICULTY  %>
-  <%= f.input :price, required: true, collection: Recipe::PRICE  %>
-  <%= f.input :diet, required: true, collection: Recipe::DIET %>
-  <%= f.input :time, required: true %>
-  <%= f.label "Filtres" %><br />
-  <div class="new-recipe-filters-container">
-    <%= f.collection_check_boxes :filter_ids, Filter.all, :id, :name do |b| %>
-      <div class="col">
-        <%= b.check_box %>
-        <%= b.label %>
-      </div>
-    <% end %>
-  </div>
-  <%= f.input :content, as: :text %>
-  <%= f.input :photo, required: true, as: :file %>
-  <%= f.button :submit, "Enregistrer", class: "btn btn-success"%>
-<% end %>
+<div class="mt-3 mb-5">
+  <%= simple_form_for @recipe do |f| %>
+    <%= f.input :name, label: "Nom de la recette" %>
+    <%= f.input :difficulty, label: "Niveau de difficulté", required: true, collection: Recipe::DIFFICULTY  %>
+    <%= f.input :price, label: "Prix", required: true, collection: Recipe::PRICE  %>
+    <%= f.input :diet, label: "Régime alimentaire", required: true, collection: Recipe::DIET %>
+    <%= f.input :time, label: "Temps requis", required: true %>
+    <%= f.label "Type(s) de plat" %><br />
+    <div class="new-recipe-filters-container">
+      <%= f.collection_check_boxes :filter_ids, Filter.all, :id, :name do |b| %>
+        <div class="col">
+          <%= b.check_box %>
+          <%= b.label %>
+        </div>
+      <% end %>
+    </div>
+    <%= f.input :content, :input_html => { 'rows' => 15}, label: "Etapes de la recette", as: :text %>
+    <%= f.input :photo, label: "Photo du plat", required: true, as: :file %>
+    <%= f.button :submit, "Enregistrer", class: "btn btn-success"%>
+  <% end %>
+</div>
