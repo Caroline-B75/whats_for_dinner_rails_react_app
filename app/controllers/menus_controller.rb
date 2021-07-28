@@ -54,6 +54,7 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     @menu.grocery_items.destroy_all
     @menu.menu_recipes.destroy_all
+    @menu.accesses.destroy_all
     @menu.delete
     authorize @menu
     if params[:redirect_path]

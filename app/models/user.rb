@@ -4,10 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :menus
-  has_many :reviews
-  has_many :favorite_recipes
-  has_many :favorites, through: :favorite_recipes, source: :recipe
+  has_many :menus, dependent: :destroy
+  has_many :reviews, dependent: :destroy
+  has_many :favorite_recipes, dependent: :destroy
+  has_many :favorites, through: :favorite_recipes, source: :recipe, dependent: :destroy
   
   validates :username, presence: true
   validates :first_name, presence: true

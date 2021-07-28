@@ -1,8 +1,8 @@
 class Menu < ApplicationRecord
-  has_many :menu_recipes
+  has_many :menu_recipes, dependent: :destroy
   has_many :recipes, through: :menu_recipes
-  has_many :grocery_items
-  has_many :accesses
+  has_many :grocery_items, dependent: :destroy
+  has_many :accesses, dependent: :destroy
   belongs_to :user
 
   validates :diet, presence: true
