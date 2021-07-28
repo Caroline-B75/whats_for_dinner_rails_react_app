@@ -13,9 +13,10 @@ class IngredientsController < ApplicationController
 
   def create
     @ingredient = Ingredient.new(ingredient_params)
+    @recipe = Recipe.find(params[:recipe_id])
     @ingredient.save!
     authorize @ingredient
-    redirect_to ingredients_path
+    redirect_to edit_recipe_path(@recipe)
   end
 
   def edit
