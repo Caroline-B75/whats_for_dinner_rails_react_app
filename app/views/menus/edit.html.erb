@@ -19,11 +19,21 @@
               <div class="card-recipe">
 
                 <div class="img">
-                  <%= cl_image_tag Recipe.find(menu_recipe.recipe_id).photo.key%>
+                  <% image= cl_image_tag Recipe.find(menu_recipe.recipe_id).photo.key%>
+                  <%= link_to image,  menu_recipe_path(menu_recipe), class: "menu-recipe-button" %>
                 </div>
 
                 <div class="card-recipe-title">
-                  <a tabindex="0" class="btn-title-popover" role="button" data-placement="top" data-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= render(partial: 'shared_menus/average_rating', locals: {recipe: Recipe.find(menu_recipe.recipe_id)}).html_safe%>"><%= Recipe.find(menu_recipe.recipe_id).name %></a>
+                  <a tabindex="0" 
+                  class="btn-title-popover" 
+                  role="button" 
+                  data-placement="top" 
+                  data-toggle="popover" 
+                  data-trigger="hover" 
+                  data-html="true" 
+                  data-content="<%= render(partial: 'shared_menus/average_rating', locals: {recipe: Recipe.find(menu_recipe.recipe_id)}).html_safe %>" >
+                  <%= Recipe.find(menu_recipe.recipe_id).name %>
+                  </a>
                 </div>
 
               </div>

@@ -8,26 +8,33 @@
     <div class="content-container text-center">
 
       <div class="row g-5 mb-4">
+
         <div class="col-auto">
           <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
             edit_menu_path(@menu),
             method: :get %>
         </div>
+
         <div class="col text-left">
           <h4>Modifier mon menu</h4>  
         </div>
+
         <div class="col text-right">
           <h4>Voir ma liste de courses</h4>
         </div>
+
         <div class="col-auto text-right">
           <%= link_to '<i class="fas fa-arrow-alt-circle-right fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
             menu_grocery_items_path(@menu),
             method: :get %>
         </div>
+
       </div>
 
       <h1 class="h1 justify-content-center mb-5">Voici votre menu pour <%= @menu.menu_recipes.count %> repas. Bon appétit !</h1>
+
       <div class="container-card-menu-show flex-column">
+      
         <div class="recipes-container justify-content-center">
           <% @menu.menu_recipes.order(:id).each do |menu_recipe| %>
             <div class="card-menu-edit">
