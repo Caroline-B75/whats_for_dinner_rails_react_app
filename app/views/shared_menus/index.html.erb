@@ -1,0 +1,40 @@
+<div class="menu-banner shadow-lg">
+</div>
+
+<div id="container-up">
+
+
+    <div class="content-container">
+      <h1 class="h1 justify-content-center mb-5">Menus partagés avec moi</h1>
+      <% @shared_menus.each do | menu | %>
+        <div class="container-card-menu-show flex-column mt-5">
+          <div class="w-100 d-flex justify-content-between pl-4 pr-4">
+            <p></p>
+            <h3 class="user-name-shared-menu-card">Partagé par <%= User.find(menu.user_id).username %> le <%= menu.created_at.strftime("%d/%m/%Y") %></h3>
+            <%= link_to '<i class="fas fa-times"></i>'.html_safe, menu_path(menu), method: :delete, remote: true, class: 'tooltips', title: "Supprimer ce menu", data: { toggle: 'tooltip', placement: 'top' }, remote: true %>
+          </div>
+          <div class="d-flex align-items-center justify-content-center flex-wrap">
+            <% menu.menu_recipes.each do |menurecipe| %>
+              <div class="card-menu-edit mb-3">
+                <div class="card-recipe">
+                  <div class="img-small img img-recipe">
+                    <%= cl_image_tag menurecipe.recipe.photo.key%>
+                  </div>
+                  <div class="card-recipe-title">
+                    <%= link_to menurecipe.recipe.name,  menu_recipe_path(menurecipe), class: "menu-recipe-button" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+            <div class="d-flex justify-content-center mt-4 mb-3">
+              <%= link_to 'Reprendre ce menu',
+              menu_path(menu),
+              method: :put,
+              class: "yellow-btn mr-3 ml-3" %>
+            </div>
+        </div>
+      <% end %>
+    </div>
+
+</div>
