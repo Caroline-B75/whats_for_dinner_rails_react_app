@@ -80,4 +80,6 @@ test:
 #
 production:
   <<: *default
-  url: <%= ENV['POSTGRESQL_ADDON_URI'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
