@@ -1,53 +1,61 @@
-<div class="banner menu-banner shadow-lg">
-  <div class="container align-middle text-center justify-content-center">
-    <%= simple_form_for @menu do |f| %>
-    <h1 class="h1 justify-content-center mt-5 mb-5">Préparons votre menu</h1>
-     <div class="row justify-content-center d-flex flex-column flex-md-row">
-        <div class="col-sm-5">
-          <div class="step-title-menu-new">
-              <div class="step-creation-menu">
-                <h3>1</h3>
-              </div>
-                <p class="label">Combien de repas souhaitez-vous préparer ?</p>
-            </div>
-          <%= f.input :number_of_meals,
-            collection: 1..30,
-            label: false %>
-        </div>
-        <div class="col-sm-5">
-          <div class="step-title-menu-new">
-              <div class="step-creation-menu">
-                <h3>2</h3>
-              </div>
-                <p class="label">Pour combien de personnes (en générale) ?</p>
-            </div>
-          <%= f.input :number_of_people,
-            collection: 0..100,
-            label: false %>
-        </div>
+<div class="menu-banner shadow-lg">
+</div>
 
-        <div class="d-flex flex-column flex-md-row justify-content-between">
-          <div class="col">
-            <div class="step-title-menu-new">
-              <div class="step-creation-menu">
-                <h3>3</h3>
-              </div>
-                <p class="label">Quel type de menu ?</p>
+<div class="content-container">
+  <div id="container-up">
+
+    <%# <div class="banner menu-banner shadow-lg"> %>
+      <div class="container align-middle text-center justify-content-center">
+        <%= simple_form_for @menu do |f| %>
+        <h1 class="h1 justify-content-center mt-5 mb-5">Préparons votre menu</h1>
+        <div class="row justify-content-center d-flex flex-column flex-md-row">
+            <div class="col-sm-5">
+              <div class="step-title-menu-new">
+                  <div class="step-creation-menu">
+                    <h3>1</h3>
+                  </div>
+                    <p class="label">Combien de repas souhaitez-vous préparer ?</p>
+                </div>
+              <%= f.input :number_of_meals,
+                collection: 1..30,
+                label: false %>
             </div>
-            <%= f.input :diet,
-              collection: Recipe::DIET,
-              wrapper_tag: 'div',
-              label_method: lambda { |diet| render 'menus/diet_card', diet: diet },
-              as: :radio_buttons,
-              include_blank: false,
-              include_hidden: false,
-              label: true,
-              error: 'Choisissez un type de menu.' %>
-          </div>
+            <div class="col-sm-5">
+              <div class="step-title-menu-new">
+                  <div class="step-creation-menu">
+                    <h3>2</h3>
+                  </div>
+                    <p class="label">Pour combien de personnes (en générale) ?</p>
+                </div>
+              <%= f.input :number_of_people,
+                collection: 0..100,
+                label: false %>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row justify-content-between">
+              <div class="col">
+                <div class="step-title-menu-new">
+                  <div class="step-creation-menu">
+                    <h3>3</h3>
+                  </div>
+                    <p class="label">Quel type de menu ?</p>
+                </div>
+                <%= f.input :diet,
+                  collection: Recipe::DIET,
+                  wrapper_tag: 'div',
+                  label_method: lambda { |diet| render 'menus/diet_card', diet: diet },
+                  as: :radio_buttons,
+                  include_blank: false,
+                  include_hidden: false,
+                  label: true,
+                  error: 'Choisissez un type de menu.' %>
+              </div>
+            </div>
         </div>
-     </div>
-        <%= f.submit "Générer mon menu", class: "red-btn" %>
-    <% end %>
-    </div>
+            <%= f.submit "Générer mon menu", class: "red-btn" %>
+        <% end %>
+        </div>
+      </div>
+    <%# </div> %>
   </div>
 </div>
