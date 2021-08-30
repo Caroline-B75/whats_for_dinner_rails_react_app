@@ -7,7 +7,7 @@
 
         <div class="col-auto">
           <%= link_to '<i class="fas fa-arrow-alt-circle-left fa-w-16 fa-2x" style="color: black;"></i>'.html_safe,
-            edit_menu_path(@menu, id: current_user.menus.last.id),
+            menu_path(@menu, id: current_user.menus.last.id),
             method: :get %>
         </div>
 
