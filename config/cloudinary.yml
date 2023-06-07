@@ -1,0 +1,11 @@
+development: 
+  cloud_name: "dlvetmyxn"
+  api_key: "377188816398877"
+  api_secret: "HPKsSX9VPtsgDaU-sqjtDl7hE_8"
+  secure: true
+
+production:
+  cloud_name: "dlvetmyxn"
+  api_key: "377188816398877"
+  api_secret: "HPKsSX9VPtsgDaU-sqjtDl7hE_8"
+  secure: true
