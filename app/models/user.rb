@@ -12,4 +12,12 @@ class User < ApplicationRecord
   validates :username, presence: true
   validates :first_name, presence: true
   validates :last_name, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[email username first_name last_name created_at updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[menus reviews favorite_recipes favorites]
+  end
 end

@@ -6,4 +6,12 @@ class Review < ApplicationRecord
   validates :rating, presence: true
   validates :content, presence: true
   validates_inclusion_of :rating, in: RATING
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[rating content created_at updated_at recipe_id user_id]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[recipe user]
+  end
 end

@@ -21,4 +21,16 @@ class Recipe < ApplicationRecord
   validates_inclusion_of :diet, in: DIET, presence: true
 
   before_destroy { self.photo.purge }
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name difficulty price time content diet created_at updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[preparations ingredients reviews menu_recipes menus favorite_recipes favorited_by filters users]
+  end
+
+  def self.ransackable_scopes(auth_object = nil)
+    [:favorited_by_current_user]
+  end
 end

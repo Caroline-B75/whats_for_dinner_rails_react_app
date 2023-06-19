@@ -11,6 +11,14 @@ class Menu < ApplicationRecord
   validates_inclusion_of :diet, in: Recipe::DIET
 
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[diet number_of_people number_of_meals user_id created_at updated_at version]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[user menu_recipes recipes grocery_items accesses]
+  end
+  
   def users
     users = []
     users << self.user

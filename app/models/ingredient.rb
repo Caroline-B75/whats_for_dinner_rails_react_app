@@ -9,4 +9,13 @@ class Ingredient < ApplicationRecord
   validates :category, presence: true
   validates_inclusion_of :category, in: CATEGORY, presence: true
   validates_inclusion_of :unit, in: UNIT, presence: true
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[name unit category created_at updated_at]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[preparations recipes]
+  end
+
 end

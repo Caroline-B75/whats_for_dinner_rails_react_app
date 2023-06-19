@@ -7,10 +7,17 @@ class RecipesController < ApplicationController
   end
 
   def index
-    @search = Recipe.search(params[:q])
-    @recipes = policy_scope(@search.result.includes(:ingredients, :favorite_recipes, :favorited_by)).order(id: :desc)
+    @search = Recipe.ransack(params[:q])
+    @recipes = @search.result(distinct: true) # Utiliser distinct: true pour éviter les doublons
+    @recipes = policy_scope(@recipes.includes(:ingredients, :favorite_recipes, :favorited_by)).order(id: :desc)
+    
+    if params[:favorited_by_current_user] == "true"
+      @recipes = @recipes.joins(:favorite_recipes).where(favorite_recipes: { user_id: current_user.id })
+    end
+  
     @recipe = Recipe.new
   end
+  
 
   def create
     @recipe = Recipe.new(recipe_params)

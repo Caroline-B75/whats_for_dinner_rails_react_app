@@ -35,8 +35,10 @@
             <h5><%= f.label :name_cont, "Recette contenant le mot :" %></h5>
             <%= f.search_field :name_cont, {class:"form-control-filters", onchange: 'this.form.submit();' } %><br /><br />
 
-            <h5><%= f.label "Mes recettes favorites :" %>
-              <%= f.check_box :favorite_recipes_user_id_eq, { onchange: 'this.form.submit();' }, @current_user.id, nil %></h5>
+            <h5>
+              <%= f.label "Mes recettes favorites :" %>
+              <%= check_box_tag :favorited_by_current_user, "true", params[:favorited_by_current_user] == "true", { onchange: 'this.form.submit();' } %>
+            </h5>
             <br />
 
             <div>
