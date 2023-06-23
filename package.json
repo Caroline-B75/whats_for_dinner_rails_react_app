@@ -2,13 +2,13 @@
   "name": "whats_for_dinner_rails_react_app",
   "private": true,
   "dependencies": {
-    "@babel/preset-react": "^7.13.13",
-    "@rails/actioncable": "^6.0.0",
-    "@rails/activestorage": "^6.0.0",
-    "@rails/ujs": "^6.0.0",
-    "@rails/webpacker": "4.3.0",
+    "@babel/preset-react": "^7.16.0",
+    "@rails/actioncable": "^6.1.4",
+    "@rails/activestorage": "^6.1.4",
+    "@rails/ujs": "^6.1.4",
+    "@rails/webpacker": "5.4.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "bootstrap": "^4.6.0",
+    "bootstrap": "^5.3.0",
     "jquery": "^3.6.0",
     "jquery-bar-rating": "^1.2.2",
     "popper.js": "^1.16.1",
@@ -19,7 +19,7 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^4.5.0"
   },
   "scripts": {
     "build": "webpack --mode production --entry ./app/javascript/packs/index.js"
