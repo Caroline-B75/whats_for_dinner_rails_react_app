@@ -1,7 +1,7 @@
 <div class="navbar fixed-top navbar-expand-sm navbar-light navbar-lewagon shadow-sm">
   <%= link_to "What's for dinner?", root_path, class: "navbar-logo" %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
@@ -21,7 +21,7 @@
         <li class="nav-item dropdown">
 
           <% if current_user %>
-            <button class="profile-avatar shadow" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="profile-avatar shadow" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <%= current_user.first_name.first %>
             </button>
           <% end %>

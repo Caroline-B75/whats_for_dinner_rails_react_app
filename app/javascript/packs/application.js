@@ -23,7 +23,12 @@ require("channels")
 // ----------------------------------------------------
 
 // External imports
-import "bootstrap";
+import $ from 'jquery'
+window.$ = $
+import '@popperjs/core'
+import "bootstrap"
+import 'bootstrap/js/dist/popover'
+import 'jquery-bar-rating'
 import {allowPopovers} from "../plugins/popovers.js"
 import {allowTooltips} from "../plugins/tooltips.js"
 import {basculeForm} from "../plugins/display_item_quantity_update_form.js";

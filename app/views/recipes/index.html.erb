@@ -88,7 +88,7 @@
                   </div>
 
                   <div class="card-recipe-title">
-                    <a tabindex="0" class="btn-title-popover" role="button" data-placement="top" data-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= render(partial: 'shared_menus/average_rating', locals: {recipe: Recipe.find(recipe.id)}).html_safe%>"><%= Recipe.find(recipe.id).name %></a>
+                    <a tabindex="0" class="btn-title-popover" role="button" data-placement="top" data-bs-toggle="popover" data-trigger="hover" data-html="true" data-content="<%= render(partial: 'shared_menus/average_rating', locals: {recipe: Recipe.find(recipe.id)}).html_safe%>"><%= Recipe.find(recipe.id).name %></a>
                   </div>
 
                   <% if current_user.menus.last.menu_recipes.find_by(recipe_id: recipe.id) %>
@@ -133,7 +133,7 @@
   <!-- Button trigger modal --> 
         <div class="row d-flex justify-content-end" id="haut">
           <div class="col-md-3 d-flex justify-content-end">
-            <button type="button" class="btn btn-dark fixed-bottom m-3" data-toggle="modal" data-target="#addRecipe">
+            <button type="button" class="btn btn-dark fixed-bottom m-3" data-bs-toggle="modal" data-bs-target="#addRecipe">
               Nouvelle recette
             </button>
           </div>
@@ -145,7 +145,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="addRecipeTitle">Ajouter une recette :</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">×</span>
                 </button>
               </div>
