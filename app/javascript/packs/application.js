@@ -29,10 +29,14 @@ import '@popperjs/core'
 import "bootstrap"
 import 'bootstrap/js/dist/popover'
 import 'jquery-bar-rating'
+import '@fortawesome/fontawesome-free/css/all'
+import 'stylesheets/application'
+import 'webpack-dev-server/client';
+import 'webpack/hot/dev-server'
 import {allowPopovers} from "../plugins/popovers.js"
 import {allowTooltips} from "../plugins/tooltips.js"
-import {basculeForm} from "../plugins/display_item_quantity_update_form.js";
-import { initStarRating } from '../plugins/init_star_rating.js';
+import {basculeForm} from "../plugins/display_item_quantity_update_form.js"
+import { initStarRating } from '../plugins/init_star_rating.js'
 
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';

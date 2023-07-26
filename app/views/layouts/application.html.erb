@@ -8,15 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %> <!-- ligne ajoutée -->
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true%>
-
-    <!-- Petite classe css imposée ici car Bootstrap prend le dessus sur le css -->
-    <style>
-      .modal-backdrop {
-        z-index: 1049 !important;
-      }
-    </style>
 
   </head>
 

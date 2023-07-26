@@ -1,15 +1,13 @@
 <div class="banner shadow-lg">
-  <div class="container align-middle">
-    <h1 class="home-h1 justify-content-center">What's for dinner?</h1><br>
-    <h2 class="home-h2 text-center"> Planifiez vos repas pour les jours à venir</h2>
-    <div class="row justify-content-center">
-      <%= link_to "Créer un nouveau menu", new_menu_path, class:"red-btn m-5" %>
-      <div class="row double-arrow justify-content-center">
-        <p>Comment ça marche ?</p><br>
-      </div>
-      <div class="row double-arrow justify-content-center">
-        <a href="#next"><%= cl_image_tag("double_down_array_white.png", height: 35, width: 50, crop: :fill) %></a>
-      </div>
+  <div class="container align-middle d-flex flex-column align-items-center">
+    <h1 class="home-h1">What's for dinner?</h1><br>
+    <h2 class="home-h2"> Planifiez vos repas pour les jours à venir</h2>
+    <%= link_to "Créer un nouveau menu", new_menu_path, class:"red-btn m-5" %>
+    <div class="row double-arrow justify-content-center">
+      <p>Comment ça marche ?</p><br>
+    </div>
+    <div class="row double-arrow justify-content-center">
+      <a href="#next"><%= cl_image_tag("double_down_array_white.png", height: 35, width: 50, crop: :fill) %></a>
     </div>
   </div>
 </div>

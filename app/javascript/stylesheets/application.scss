@@ -1,0 +1,13 @@
+// Graphical variables
+@import "~stylesheets/config/fonts";
+@import "~stylesheets/config/colors";
+@import "~stylesheets/config/bootstrap_variables";
+
+// External libraries
+@import "~bootstrap/scss/bootstrap";
+// @import "~font-awesome-sprockets";
+@import "~jquery-bar-rating/dist/themes/css-stars";
+
+// Your CSS partials
+@import "~stylesheets/components/index";
+@import "~stylesheets/pages/index";
